@@ -1,0 +1,398 @@
+﻿####################################################################################################
+# +----------------------------------------------------------------------------------------------+ #
+# |    _____                       _           _     _           _____       _                   | #
+# |   / ____|                     | |         | |   | |         |  __ \     | |                  | #
+# |  | (___  _   _ _ __   ___ _ __| |     ___ | |__ | |__  _   _| |  | | ___| |_   ___  _____    | #
+# |   \___ \| | | | '_ \ / _ \ '__| |    / _ \| '_ \| '_ \| | | | |  | |/ _ \ | | | \ \/ / _ \   | #
+# |   ____) | |_| | |_) |  __/ |  | |___| (_) | |_) | |_) | |_| | |__| |  __/ | |_| |>  <  __/   | #
+# |  |_____/ \__,_| .__/ \___|_|  |______\___/|_.__/|_.__/ \__, |_____/ \___|_|\__,_/_/\_\___|   | #
+# |               | |                                       __/ |                                | #
+# |               |_|                                      |___/                                 | #
+# |                                                                                              | #
+# |                                                                                              | #
+# |  WIKI:        https://pedrojm96.com/minecraft-plugin/superlobbydeluxe                        | #
+# |  BUG REPORTS: https://www.spigotmc.org/threads/superlobbydeluxe.132949                       | #
+# |  AUTHOR: PedroJM96 (pedrojm96.com)                                                           | #
+# |  OFFICIAL SERVER: mc.mundopixels.net                                                         | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# | For a detailed explanation of the configuration see this page.                               | #
+# | https://pedrojm96.com/minecraft-plugin/superlobbydeluxe/config/                              | #
+# +----------------------------------------------------------------------------------------------+ #
+####################################################################################################
+
+# +----------------------------------------------------------------------------------------------+ #
+# |                                            General                                           | #
+# +----------------------------------------------------------------------------------------------+ #
+#Only for developers, do not modify.
+debug: false
+newconfig: true
+#Check for updates.
+update-check: true
+#The prefix that the plugin will show in the messages.
+prefix: '&6SuperLobby &e>> &7'
+#The language of the plugin messages.
+messages: EN
+#To clean the inventory to enter the server.
+join-clear-inventory: true
+#To clean the chat when entering the server.
+join-clear-chat: true
+#To teleport the player to the spawn when entering the server.
+join-spawn: true
+#To transport the player to spawn when they place the command /spawn
+command-spawn: true
+#To activate custom information commands.
+info-commands: true
+#To activate custom events.
+custom-events: true
+#To activate the menus.
+menu: true
+#Deactivate the player's interaction with the daylight sensor.
+disable-daylight-sensor-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+
+#Deactivate the player's interaction with the dropper.
+disable-dropper-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+#Deactivate the player's interaction with the hopper.
+disable-hopper-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+#Deactivate the player's interaction with the fence gate.
+disable-fence-gate-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+#Deactivate the player's interaction with the trapdoor.
+disable-trapdoor-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+#Deactivate the player's interaction with the button.
+disable-button-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+#Deactivate the player's interaction with the dispenser.
+disable-dispenser-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+#Disable interaction with the musical blocks.
+disable-noteblock-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#Disable interaction with the Armor Stands.
+disable-armorstands-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#Deactivate the player's interaction with the door.
+disable-door-interaction:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate the rain.
+disable-rain:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate the blocks break.
+disable-block-break:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate that they place blocks.
+disable-block-place:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate that the blocks burn.
+disable-block-burn:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+#To deactivate if the player can throw item.
+disable-drop-item:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate if the player can move item in the inventory.
+disable-item-move:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate that the items do damage.
+disable-item-damage:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate if the player can collect item.
+disable-pick-up-items:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate entity explosions.
+disable-entity-explode:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+#To deactivate the damage.
+disable-damage:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate hunger in the players.
+disable-hunger:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+  
+#To deactivate the players' death messages.
+disable-death-message:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To deactivate monsters and animals appear.
+disable-creature-spawn:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To clean the items left by the player when he dies.
+clear-drops-on-death:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+
+#To give and activate the custom items when entering the server.
+lobby-items:
+  enable: true
+  join-server: true
+  respawn: true
+  join-world: true
+  world:
+  - 'lobby'
+
+#To prevent players from falling into the void.
+#level = nivel de altura(y) que se tomara como el vacio.
+void-tp:
+  enable: true
+  level: 0
+  world:
+  - 'lobby'
+  - 'auth'
+#So that the world is always day.
+always-day:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+#So that the world is always night.
+always-night:
+  enable: false
+  world:
+  - 'lobby'
+  - 'auth'
+#To protect the frames.
+frame-protect:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+#To protect the farm.
+farm-protect:
+  enable: true
+  world:
+  - 'lobby'
+  - 'auth'
+#To have the launch pad.
+jump-pads:
+  enable: true
+  plate-block: 'LIGHT_WEIGHTED_PRESSURE_PLATE'
+  plate-block-old: 'GOLD_PLATE'
+  sound: 'BLOCK_PISTON_EXTEND'
+  sound-old: 'PISTON_EXTEND'
+  world:
+  - 'lobby'
+  - 'auth'
+# +----------------------------------------------------------------------------------------------+ #
+# |                                            BossBar                                           | #
+# +----------------------------------------------------------------------------------------------+ #
+
+#To send messages when you enter using the BossBar.
+#Colors: BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+#Styles: NOTCHED_10, NOTCHED_12, NOTCHED_20, NOTCHED_6, PROGRESS
+join-boss-bar:
+  enable: true
+  message: '&3Welcome to mundopixels!'
+  color: BLUE
+  style: NOTCHED_20
+  seconds: 10
+# +----------------------------------------------------------------------------------------------+ #
+# |                                              Tab                                             | #
+# +----------------------------------------------------------------------------------------------+ #
+
+#To send the tab when joining the server.
+#update = 0 to disable update interval.
+join-tab:
+  enable: true
+  update: 1000
+  header: |-
+    &7
+    &f&m--&7&m--&8&m[-&r &6&lMUNDO&f&lPIXELS &7&lNETWORK &8&m-]&7&m--&f&m--
+    &7
+  footer: |-
+    &7
+    &7Website: &7mundopixels.net
+    &7Facebook: &7facebook.mundopixels.net
+    &7Store: &7tienda.mundopixels.net
+    &7
+# +----------------------------------------------------------------------------------------------+ #
+# |                                             Titles                                           | #
+# +----------------------------------------------------------------------------------------------+ #
+
+#To send titles when joining the server.
+join-titles:
+  enable: true
+  fade-in: 20
+  stay: 50
+  fade-out: 10
+  title: '&6<player> &bWelcome to'
+  sub-title: '&6&lMUNDO&f&lPIXELS'
+# +----------------------------------------------------------------------------------------------+ #
+# |                                              MOTD                                            | #
+# +----------------------------------------------------------------------------------------------+ #
+
+#To send the MOTD when joining the server.
+join-motd:
+  enable: true
+  message:
+  - '&a&m---------------------------------------------------'
+  - ' '
+  - '&a# &6&l<player> &7Welcome to &6&lMUNDO&f&lPIXELS &fNETWORK!'
+  - ' '
+  - '&a# &7Buy rank on: &2tienda.mundopixels.net'
+  - '&a# &7Facebook: &2facebook.mundopixels.net'
+  - '&a# &7For more information type &2/info'
+  - ' '
+  - '&a&m---------------------------------------------------'
+# +----------------------------------------------------------------------------------------------+ #
+# |                                            ActionBar                                         | #
+# +----------------------------------------------------------------------------------------------+ #
+
+#To send the ActionBar when joining the server.
+join-action-bar:
+  enable: true
+  seconds: 10
+  message: '&6Welcome to mundopixels!'
+# +----------------------------------------------------------------------------------------------+ #
+# |                                       Commands Blacklist                                     | #
+# +----------------------------------------------------------------------------------------------+ #
+#To deactivate commands.
+commands-blacklist:
+  enable: true
+  bypass: superlobby.admin
+  list:
+  - /p
+  - /pl
+  - /bukkit:pl
+  - /'?'
+  - /bukkit:?
+  - /help
+  - /bukkit:help
+  - /plugins
+  - /bukkit:plugins
+  - /about
+  - /bukkit:about
+  - /ver
+  - /bukkit:ver
+  - /version
+  - /bukkit:version
+  - /gc
+  - /tps
+  - /me
+  - /bukkit:me
+  - /bukkit:ehelp
+  - /icanhasbukkit
+  - /icanhasspigot
+  - /info
+  - /mc:help
+  - /minecraft:help
+  - /essentials:help
+  - /essentials:ehelp
+  - /perm
+  - /mv
+  - /multiverse-core:mv
+  - /we
+  - /worldedit
+  
+  
+# +----------------------------------------------------------------------------------------------+ #
+# |                                       Disable Tab Complete                                   | #
+# +----------------------------------------------------------------------------------------------+ #
+#To disable tab complete
+disable-tab-complete:
+  enable: false
+  bypass: superlobby.staff
+  whitelist:
+  - /warp
+  - /menu
+  - /games
+  - /info
+  - /yt
+  - /pay
+  - /tpa
+  - /tpaccept

@@ -1,0 +1,454 @@
+﻿####################################################################################################
+# +----------------------------------------------------------------------------------------------+ #
+# |    _____                       _           _     _           _____       _                   | #
+# |   / ____|                     | |         | |   | |         |  __ \     | |                  | #
+# |  | (___  _   _ _ __   ___ _ __| |     ___ | |__ | |__  _   _| |  | | ___| |_   ___  _____    | #
+# |   \___ \| | | | '_ \ / _ \ '__| |    / _ \| '_ \| '_ \| | | | |  | |/ _ \ | | | \ \/ / _ \   | #
+# |   ____) | |_| | |_) |  __/ |  | |___| (_) | |_) | |_) | |_| | |__| |  __/ | |_| |>  <  __/   | #
+# |  |_____/ \__,_| .__/ \___|_|  |______\___/|_.__/|_.__/ \__, |_____/ \___|_|\__,_/_/\_\___|   | #
+# |               | |                                       __/ |                                | #
+# |               |_|                                      |___/                                 | #
+# |                                                                                              | #
+# |                                                                                              | #
+# |  WIKI:         https://pedrojm96.com/minecraft-plugin/superlobbydeluxe                       | #
+# |  BUG REPORTS: https://www.spigotmc.org/threads/superlobbydeluxe.132949                       | #
+# |  AUTHOR: PedroJM96 (pedrojm96.com)                                                           | #
+# |  OFFICIAL SERVER: mc.mundopixels.net                                                         | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                          Menu Nodes                                          | #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                                                                              | #
+# |  settings-name: The name of the menu.                                                        | #
+# |  settings-rows: Number of rows in the menu. (1,2,3,4,5,6).                                   | #
+# |  settings-world: World where the menu works. (Do not place to work on all worlds).           | #
+# |  settings-worlds: Worlds where the menu works. (Do not place to work on all worlds).         | #
+# |  settings-open-commands: Command to open the menu.                                           | #
+# |  settings-permission: Permission to use the menu.                                            | #
+# |  settings-open-sound: Sound that will sound when you open the menu.                          | #
+# |  settings-glass-enable: To place decoration glasses. default false                           | #
+# |  settings-glass-color: The color of the glasses. From 0 to 15                                | #
+# |  items: List of items that will contain the menu.                                            | #
+# |                                                                                              | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                          Items Nodes                                         | #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                                                                              | #
+# |  name: The name of the item.                                                                 | #
+# |  lore: The description of the item.                                                          | #
+# |  material: The material of the item. Example: "SKULL_ITEM:3","DIAMOND".                      | #
+# |  slot: Location in the inventory of the item.                                                | #
+# |  commands: Command that is executed when clicking.                                           | #
+# |            (https://pedrojm96.com/minecraft-plugin/command-format/)                          | #
+# |  permission: Permission to use the item.                                                     | #
+# |  price: Price to use the item. default none.                                                 | #
+# |  keep-open: To keep inventory open. default false.                                           | #
+# |  permission-to-view: Permission to view the inventory. default false.                        | #
+# |  skull: To use heads with skin.                                                              | #
+# |        (https://pedrojm96.com/minecraft-plugin/skulls-format/)                               | #
+# |  enchant-glow: To add enchantment colors to the items. default false                         | #
+# |  version-check: To check if it is the correct version of minecraft.                          | #
+# |                    default false (Requires ViaVersion)                                       | #
+# |  version-list: List of versions to check in check version.                                   | #
+# |  no-version-message: Message to show if the version is not compatible.                       | #
+# |                      Use <version> to show compatible versions in the message.               | #
+# |  no-permision-message: Message that will be shown to the player when he does not have the    | #
+# |                        permissions to use the item.                                          | #
+# |                                                                                              | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# | To create more item simply copy the previous one and paste it here within items.             | #
+# | To create more menus, copy the previous menu and paste it down in a clean place.             | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# | For a detailed explanation of the configuration see this page.                               | #
+# | https://pedrojm96.com/minecraft-plugin/superlobbydeluxe/menus/                               | #
+# +----------------------------------------------------------------------------------------------+ #
+####################################################################################################
+menu:
+  settings-name: '&6&k.&r &5&lExample Menu &6&k.'
+  settings-rows: 5
+  settings-open-commands: menu
+  settings-permission: superlobby.menu.menu
+  settings-open-sound: NOTE_PLING
+  settings-glass-enable: true
+  settings-glass-color: 14
+  items:
+    gamemode:
+      name: '&6&l<3> &b&lGame modes &6&l<3>'
+      lore:
+      - '&b&m--------------------'
+      - '&7Modalities of game'
+      - '&7that we have available.'
+      - '&b&m--------------------'
+      - '&6Skull skin example with url'
+      material: 'PLAYER_HEAD'
+      material-old: 'SKULL_ITEM:3'
+      slot: 12
+      keep-open: true
+      skull: url:http://textures.minecraft.net/texture/e063a0ebb2d8010273b6c45b64e84d83b1e43e2ca5dfb2a6fd838c3f88827d
+      commands:
+      - 'open: game'
+    profile:
+      name: '&6&l<3> &b&lProfile &6&l<3>'
+      lore:
+      - '&b&m---------------------------------'
+      - '&7General player information,'
+      - '&7statistics, achievements among others.'
+      - '&b&m---------------------------------'
+      - '&6Skull example with player name'
+      material: 'PLAYER_HEAD'
+      material-old: 'SKULL_ITEM:3'
+      skull: <player>
+      slot: 16
+      keep-open: true
+      commands:
+      - 'open: profile'
+    options:
+      name: '&6&l<3> &b&lOptions &6&l<3>'
+      lore:
+      - '&b&m-----------------------'
+      - '&7Permit activates or '
+      - '&7deactivates player options.'
+      - '&b&m-----------------------'
+      material: 'REPEATER'
+      material-old: 'DIODE'
+      slot: 22
+      commands:
+      - 'tell: &e>> &7This only works with a plugin options like DeluxePlayerOptions:'
+      - 'tell: &e>> &ehttps://www.spigotmc.org/resources/playeroptions.33033/'
+    shop:
+      name: '&6&l<3> &b&lShop&6&l<3>'
+      lore:
+      - '&b&m-------------------------'
+      - '&7See the items we have'
+      - '&7for sale to buy'
+      - '&b&m-------------------------'
+      - '&6Example with submenus'
+      material: 'DIAMOND'
+      slot: 24
+      keep-open: true
+      commands:
+      - 'open: shop'
+    referrals:
+      name: '&6&l<3> &b&lReferrals &6&l<3>'
+      lore:
+      - '&b&m--------------------------'
+      - '&7Win fantastic rewards'
+      - '&7by completing these tasks.'
+      - '&b&m--------------------------'
+      material: 'SPONGE'
+      slot: 14
+      commands:
+      - 'tell: &e>> &7This function can be added with a referral plugin such as:'
+      - 'tell: &e>> &ehttps://www.spigotmc.org/resources/referralsystem.29709/'
+    permission-view:
+      name: "&c&l\u2605 &a&lExample Permission to see &c&l\u2605"
+      lore:
+      - '&8> &7Great you can see it'
+      - '&8> &aYou have the necessary permissions.'
+      material: 'STONE'
+      slot: 32
+      commands:
+      - 'tell: You have the necessary permissions'
+      permission: superlobby.permission-view
+      permission-to-view: true
+    credits:
+      name: '&6&l<3> &b&lCredits &6&l<3>'
+      lore:
+      - '&b&m------------------'
+      - '&7See your credits'
+      - '&b&m------------------'
+      - '&6Skull with textures skin'
+      material: 'PLAYER_HEAD'
+      material-old: 'SKULL_ITEM:3'
+      skull: textures:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDk0NTk5NmM4YWU5MWUzNzYxOTZkNGRjNjc2ZmVjMzFmZWFjNzkwYTJmMTk1YjI5ODFhNzAzY2ExZDE2Y2I2In19fQ==
+      slot: 37
+      commands:
+      - 'tell: &e>> &7This function can be added with a credits plugin like:'
+      - 'tell: &e>> &ehttps://www.spigotmc.org/resources/supercredits.31074/'
+game:
+  settings-name: '&6&k.&r &8&lGame modes &6&k.'
+  settings-rows: 6
+  settings-open-commands: game
+  settings-permission: superlobby.menu.game
+  settings-open-sound: NOTE_PLING
+  settings-glass-enable: true
+  settings-glass-color: 15
+  items:
+    survival:
+      name: '&6&l<3> &a&lSURVIVAL &6&l<3> &7(&60/20&7)'
+      lore:
+      - '&b&m--------------------------'
+      - '&8Version 1.12.2'
+      - '&8> &aClick to connect.'
+      - '&b&m--------------------------'
+      - '&6Example with version check'
+      material: 'GRASS'
+      version-check: true
+      version-list:
+      - 1.12.2
+      no-version-message: '&7[&9&l>&7] Only available in the versions <version>.'
+      slot: 12
+      commands:
+      - 'server: survival'
+      keep-open: true
+    skywars:
+      name: '&6&l<3> &d&lSKYWARS &6&l<3> &7(&60/60&7)'
+      lore:
+      - '&b&m--------------------------'
+      - '&8Version 1.12.2'
+      - '&8> &aClick to connect.'
+      - '&b&m--------------------------'
+      - '&6Example with version check'
+      material: 'BOW'
+      version-check: true
+      version-list:
+      - 1.12.2
+      no-version-message: '&7[&9&l>&7] Only available in the versions <version>.'
+      slot: 14
+      commands:
+      - 'server: skywars'
+      keep-open: true
+    buildbattle:
+      name: '&6&l<3> &c&lBUILDBATTLE &6&l<3> &7(&60/20&7)'
+      lore:
+      - '&b&m--------------------------'
+      - '&8Version 1.8.8+'
+      - '&8> &cNot available.'
+      - '&b&m--------------------------'
+      - '&6Example with multiple versions check'
+      material: 'BRICKS'
+      material-old: 'BRICK'
+      version-check: true
+      version-list:
+      - 1.8.8
+      - 1.8.9
+      - '1.9'
+      - 1.9.1
+      - 1.9.2
+      - 1.9.3
+      - 1.9.4
+      - '1.10'
+      - 1.10.1
+      - 1.10.2
+      - '1.11'
+      - 1.11.1
+      - 1.11.2
+      - '1.12'
+      - 1.12.1
+      - 1.12.2
+      no-version-message: '&7[&9&l>&7] Only available in versions higher than 1.8.8.'
+      slot: 16
+      commands:
+      - 'server: buildbattle'
+      keep-open: true
+    pvp:
+      name: '&6&l<3> &6&lPVP &6&l<3> &7(&60/20&7)'
+      lore:
+      - '&b&m--------------------------'
+      - '&8Version 1.8.8+'
+      - '&8> &cNot available.'
+      - '&b&m--------------------------'
+      - '&6Example with multiple versions check'
+      material: 'DIAMOND_SWORD'
+      version-check: true
+      version-list:
+      - 1.8.8
+      - 1.8.9
+      - '1.9'
+      - 1.9.1
+      - 1.9.2
+      - 1.9.3
+      - 1.9.4
+      - '1.10'
+      - 1.10.1
+      - 1.10.2
+      - '1.11'
+      - 1.11.1
+      - 1.11.2
+      - '1.12'
+      - 1.12.1
+      - 1.12.2
+      no-version-message: '&7[&9&l>&7] Only available in versions higher than 1.8.8.'
+      slot: 30
+      commands:
+      - 'server: pvp'
+      keep-open: true
+    eggwars:
+      name: '&6&l<3> &9&lEGGWARS &6&l<3> &7(&60/20&7)'
+      lore:
+      - '&b&m--------------------------'
+      - '&8Version 1.12.2'
+      - '&8> &cNot available.'
+      - '&b&m--------------------------'
+      - '&6Example with version check'
+      material: 'DRAGON_EGG'
+      version-check: true
+      version-list:
+      - 1.12.2
+      no-version-message: '&7[&9&l>&7] Only available in the versions <version>.'
+      slot: 32
+      commands:
+      - 'server: eggwars'
+      keep-open: true
+    uhc:
+      name: '&6&l<3> &e&lUHC &6&l<3> &7(&60/20&7)'
+      lore:
+      - '&b&m--------------------------'
+      - '&8Version 1.8.8+'
+      - '&8> &cNot available.'
+      - '&b&m--------------------------'
+      - '&6Example with multiple versions check'
+      material: 'GOLDEN_APPLE'
+      version-check: true
+      version-list:
+      - 1.8.8
+      - 1.8.9
+      - '1.9'
+      - 1.9.1
+      - 1.9.2
+      - 1.9.3
+      - 1.9.4
+      - '1.10'
+      - 1.10.1
+      - 1.10.2
+      - '1.11'
+      - 1.11.1
+      - 1.11.2
+      - '1.12'
+      - 1.12.1
+      - 1.12.2
+      no-version-message: '&7[&9&l>&7] Only available in versions higher than 1.8.8.'
+      slot: 34
+      commands:
+      - 'server: uhc'
+      keep-open: true
+    builder:
+      name: '&6&l<3> &8&lBuilder &6&l<3> &7(&60/20&7)'
+      lore:
+      - '&b&m--------------------------'
+      - '&8> &aClick to connect.'
+      - '&b&m--------------------------'
+      material: 'WOODEN_AXE'
+      material-old: 'WOOD_AXE'
+      permission: superlobby.server.builder
+      slot: 50
+      commands:
+      - 'server: builder'
+      keep-open: true
+    menu:
+      name: '&6&l<3> &b&lMen<u> &6&l<3>'
+      lore:
+      - '&b&m--------------------------'
+      - '&7Go to the main menu.'
+      - '&b&m--------------------------'
+      - '&6Example with submenus'
+      material: 'NETHER_STAR'
+      slot: 54
+      commands:
+      - 'open: menu'
+      keep-open: true
+    lobby:
+      name: '&6&l<3> &b&lLobby &6&l<3> &7(&60/20&7)'
+      lore:
+      - '&b&m--------------------------'
+      - '&7Go to the main Lobby.'
+      - '&b&m--------------------------'
+      material: 'NETHER_STAR'
+      slot: 46
+      commands:
+      - 'server: lobby'
+      keep-open: true
+profile:
+  settings-name: '&6&k..&r &8&lProfile  &6&k..'
+  settings-rows: 3
+  settings-open-commands: profile
+  settings-permission: superlobby.menu.profile
+  settings-open-sound: NOTE_PLING
+  settings-glass-enable: true
+  settings-glass-color: 15
+  items:
+    skull:
+      name: '&6&l<3> &b&l<player> &6&l<3>'
+      lore:
+      - '&b&m----------------------'
+      - '&b- &7Name: &f<player>'
+      - '&b- &7Rank: &f<rank>'
+      - '&b- &7Referrals: &f%rs_referrals%'
+      - '&b- &7Referral points: &f%rs_points%'
+      - '&b- &7Credits&7: &f%scredits_value%'
+      - '&b&m----------------------'
+      - '&eExample with placeholders'
+      material: 'PLAYER_HEAD'
+      material-old: 'SKULL_ITEM:3'
+      slot: 12
+      skull: <player>
+      keep-open: true
+    stats:
+      name: '&6&l<3> &b&lStatistics &6&l<3>'
+      lore:
+      - '&b&m-----------------------'
+      - '&7Global statistics of'
+      - '&7all game modes'
+      - '&b&m-----------------------'
+      material: 'BOOK'
+      slot: 16
+      commands:
+      - 'tell: &e>> &7This works only with a stats plugin like superstats.'
+      - 'tell: &e>> &ehttps://www.spigotmc.org/resources/superstats.43594/'
+shop:
+  settings-name: '&6&k.&r &5&lShop &6&k.'
+  settings-rows: 3
+  settings-open-commands: shop
+  settings-permission: superlobby.menu.shop
+  settings-open-sound: NOTE_PLING
+  settings-glass-enable: true
+  settings-glass-color: 15
+  items:
+    diamond:
+      name: '&b&LDiamonds &6(&7Price: &f<price>&6)'
+      lore:
+      - '&a-----------------------'
+      - '&a- &7Buy 10 Diamonds'
+      - '&a- &7Click to buy'
+      - '&a-----------------------'
+      material: 'DIAMOND'
+      slot: 12
+      commands:
+      - 'give: DIAMOND 10'
+      - 'tell: &7Your reward &610 &bdiamonds'
+      - 'broadcast: &7The player &b<player> &7 buy &610 &bdiamonds.'
+      permission: superlobby.diamond
+      price: 40
+    gold:
+      name: '&b&lGolds &6(&7Price: &f<price>&6)'
+      lore:
+      - '&a-----------------------'
+      - '&a- &7Buy 10 Golds'
+      - '&a- &7Click to buy'
+      - '&a-----------------------'
+      material: 'GOLD_INGOT'
+      slot: 14
+      commands:
+      - 'give: GOLD 10'
+      - 'tell: &7Your reward &610 &bgolds.'
+      - 'broadcast: &7The player &b<player> &7buy &610 &bgolds.'
+      permission: superlobby.gold
+      price: 10
+    menu:
+      name: '&6&l<3> &b&lMen<u> &6&l<3>'
+      lore:
+      - '&b&m--------------------------'
+      - '&7Go to the main menu.'
+      - '&b&m--------------------------'
+      - '&6Example with submenus'
+      material: 'NETHER_STAR'
+      slot: 16
+      commands:
+      - 'open: menu'
+      keep-open: true

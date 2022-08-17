@@ -1,0 +1,34 @@
+﻿
+
+
+Hola, �podr�a agregar a los spawn la posibilidad de establecer un permiso?
+ 
+Gran complemento, pero con un gran problema, los jugadores aún pueden poner agua y lava mientras están en el lobby
+
+
+Hola, me pregunto si hay una manera de agregar un elemento de unión a un solo mundo, por ejemplo: cuando me uno al mundo "iniciar sesión" no obtengo los elementos, pero cuando entro en el mundo del "lobby" sí.
+Gracias
+
+Parece que FrameProtect no funciona: los jugadores en supervivencia y no optados pueden destruir elementos dentro de los marcos de elementos. Agregué el mundo a la configuración, por lo que tiene que ser un error.
+
+hola hermano, el complemento es increíble pero hay un error, si saltas a un jugador común en las camas con trigo u otras plántulas,
+
+Gran complemento solo una cosa, no parece haber ninguna forma de especificar qué mundos reciben los anuncios, etc.
+
+también pueden tomar flores de macetas
+
+El rango predeterminado con casi 0 permisos puede destruir marcos de elementos
+
+¿Podría agregar una función de texto en la que se pueda hacer clic? Por lo que he visto, esto es bastante factible de agregar, ¡y realmente útil también! Por cierto, me encanta el complemento, aunque la última versión (4.2.1) genera muchos errores en CraftBukkit 1.15.2.
+
+Buen complemento. Pero los jugadores pueden pisotear los cultivos. No puedo encontrar esta configuración en config.yml
+
+Can we add head to the materials in the menu section. (head database).
+An excellent plugin.
+
+Hello! Can you add option to disable sounds for jump pads in SuperLobbyDeluxe? Ive tried using NONE null or other features, but I cant disable it...
+
+Hello! I have some features you could add to your lobby plugin!
+First of all, the setting to set player health, and then ability to set join items into player's inventory but like inside, so if you set slot 10+ it will set that item to specific slot in inside inventory :D
+Thanks
+hello, in your plugin super lobby which i have i still have animals on spawn, how to fix it ?

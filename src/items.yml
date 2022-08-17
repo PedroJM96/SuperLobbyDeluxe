@@ -1,0 +1,77 @@
+﻿####################################################################################################
+# +----------------------------------------------------------------------------------------------+ #
+# |    _____                       _           _     _           _____       _                   | #
+# |   / ____|                     | |         | |   | |         |  __ \     | |                  | #
+# |  | (___  _   _ _ __   ___ _ __| |     ___ | |__ | |__  _   _| |  | | ___| |_   ___  _____    | #
+# |   \___ \| | | | '_ \ / _ \ '__| |    / _ \| '_ \| '_ \| | | | |  | |/ _ \ | | | \ \/ / _ \   | #
+# |   ____) | |_| | |_) |  __/ |  | |___| (_) | |_) | |_) | |_| | |__| |  __/ | |_| |>  <  __/   | #
+# |  |_____/ \__,_| .__/ \___|_|  |______\___/|_.__/|_.__/ \__, |_____/ \___|_|\__,_/_/\_\___|   | #
+# |               | |                                       __/ |                                | #
+# |               |_|                                      |___/                                 | #
+# |                                                                                              | #
+# |                                                                                              | #
+# |  WIKI:        https://pedrojm96.com/minecraft-plugin/superlobbydeluxe/                       | #
+# |  BUG REPORTS: https://www.spigotmc.org/threads/superlobbydeluxe.132949                       | #
+# |  AUTHOR: PedroJM96 (pedrojm96.com)                                                           | #
+# |  OFFICIAL SERVER: mc.mundopixels.net                                                         | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                          Nodes                                               | #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                                                                              | #
+# |  name: The name of the item.                                                                 | #
+# |  material: The material of the item. Example: "SKULL_ITEM:3","DIAMOND".                      | #
+# |  slot: Location in the inventory of the item.                                                | #
+# |  skull: To use heads with skin.                                                              | #
+# |        (https://pedrojm96.com/minecraft-plugin/skulls-format/)                               | #
+# |  commands: Command that is executed when clicking.                                           | #
+# |            (https://pedrojm96.com/minecraft-plugin/command-format/)                          | #
+# |  delay: Waiting time to reuse the item. Place -1 to disable.                                 | #
+# |  lore: (List) The description of the item.                                                   | #
+# |  permission: Permission to use the item.                                                     | #
+# |  enchant-glow: To add enchantment colors to the items. default false                         | #
+# |  version-check: To check if it is the correct version of minecraft.                          | #
+# |                    default false (Requires ViaVersion)                                       | #
+# |  version-list: List of versions to check in check version.                                   | #
+# |  no-version-message: Message to show if the version is not compatible.                       | #
+# |                      Use <version> to show compatible versions in the message.               | #
+# |                                                                                              | #
+# |                                                                                              | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# | To create more elements, simply copy the previous one and paste it in an empty place.        | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# | For a detailed explanation of the configuration see this page.                               | #
+# | https://pedrojm96.com/minecraft-plugin/superlobbydeluxe/items/                               | #
+# +----------------------------------------------------------------------------------------------+ #
+####################################################################################################
+
+#List of item.
+menu:
+  name: '&8<3>  &6Menu &8<3>  &7(Right button)'
+  material: SIGN
+  slot: 1
+  commands:
+  - 'player: menu'
+  delay: 5
+  permission: superlobby.items.menu
+game:
+  name: '&8<3>  &6Game Modes &8<3>  &7(Right button)'
+  material: MILK_BUCKET
+  slot: 2
+  commands:
+  - 'player: game'
+  delay: 5
+  permission: superlobby.items.game
+profile:
+  name: '&8<3>  &6Profile &a<player> &8<3>  &7(Right button)'
+  material: SKULL_ITEM:3
+  slot: 3
+  skull: <player>
+  commands:
+  - 'player: profile'
+  delay: 5
+  permission: 'superlobby.items.profile'

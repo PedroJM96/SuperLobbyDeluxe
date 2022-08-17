@@ -1,0 +1,85 @@
+﻿####################################################################################################
+# +----------------------------------------------------------------------------------------------+ #
+# |    _____                       _           _     _           _____       _                   | #
+# |   / ____|                     | |         | |   | |         |  __ \     | |                  | #
+# |  | (___  _   _ _ __   ___ _ __| |     ___ | |__ | |__  _   _| |  | | ___| |_   ___  _____    | #
+# |   \___ \| | | | '_ \ / _ \ '__| |    / _ \| '_ \| '_ \| | | | |  | |/ _ \ | | | \ \/ / _ \   | #
+# |   ____) | |_| | |_) |  __/ |  | |___| (_) | |_) | |_) | |_| | |__| |  __/ | |_| |>  <  __/   | #
+# |  |_____/ \__,_| .__/ \___|_|  |______\___/|_.__/|_.__/ \__, |_____/ \___|_|\__,_/_/\_\___|   | #
+# |               | |                                       __/ |                                | #
+# |               |_|                                      |___/                                 | #
+# |                                                                                              | #
+# |                                                                                              | #
+# |  WIKI:        https://pedrojm96.com/minecraft-plugin/superlobbydeluxe/                       | #
+# |  BUG REPORTS: https://www.spigotmc.org/threads/superlobbydeluxe.132949                       | #
+# |  AUTHOR: PedroJM96 (pedrojm96.com)                                                           | #
+# |  OFFICIAL SERVER: mc.mundopixels.net                                                         | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                          Nodes                                               | #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                                                                              | #
+# |  permission: Permission for the event to work.                                               | #
+# |  join-message: Message when entering the server. Place "none" to not send any message.       | #
+# |  quit-message: Message when leaving the server. Place "none" to not send any message.        | #
+# |  join-firework: Fireworks when entering the server. Use random or                            | #
+# |               (https://pedrojm96.com/minecraft-plugin/fireworkeffect-type/)                  | #
+# |  join-sound: Sound when entering the server.                                                 | #
+# |               (https://pedrojm96.com/minecraft-plugin/sound-spigot-1-9/)                     | #
+# |  join-sound-old: Sound when entering the server.                                             | #
+# |               (https://pedrojm96.com/minecraft-plugin/sound-spigot-1-8-8/)                   | #
+# |  join-gamemode: Player's game mode when it enters the server.                                | #
+# |               (https://pedrojm96.com/minecraft-plugin/gamemodes/)                            | #
+# |  join-comands: (List) Commands to execute when the player enters the server.                 | #
+# |               (https://pedrojm96.com/minecraft-plugin/command-format/)                       | #
+# |  join-sound-global: Enabled to send sound of all players.                                    | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# | To add a new group simply copy and paste in a new place.                                     | #
+# | The order is very important while higher up is the group's priority.                         | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# | For a detailed explanation of the configuration see this page.                               | #
+# | https://pedrojm96.com/minecraft-plugin/superlobbydeluxe/customevents/                        | #
+# +----------------------------------------------------------------------------------------------+ #
+####################################################################################################
+
+#List of groups for events.
+owner:
+  permission: superlobby.owner
+  join-message: '&eThe owner &a<player> &ejoined the server!'
+  quit-message: '&eThe owner &c<player> &eleave the server!'
+  join-firework: random, 5
+  join-sound: ENTITY_GENERIC_EXPLODE
+  join-sound-old: EXPLODE
+silent:
+  permission: superlobby.staff
+  join-message: none
+  quit-message: none
+god:
+  permission: superlobby.god
+  join-message: '&b#GOD &a<player> &ejoined the server!'
+  quit-message: '&b#GOD &c<player> &eleave the server!'
+  join-firework: random, 5
+  join-sound-global: true
+  join-sound: ENTITY_GENERIC_EXPLODE
+  join-sound-old: EXPLODE
+vip++:
+  permission: superlobby.vip++
+  join-message: '&b#VIP++ &a<player> &ejoined the server!'
+  quit-message: '&b#VIP++ &c<player> &eleave the server!'
+  join-firework: random, 5
+  join-sound: ENTITY_GENERIC_EXPLODE
+  join-sound-global: true
+  join-sound-old: EXPLODE
+vip:
+  permission: superlobby.vip
+  join-message: '&b#VIP &a<player> &ejoined the server!'
+  quit-message: '&b#VIP &c<player> &eleave the server!'
+  join-firework: random, 5
+default:
+  permission: superlobby.default
+  join-message: '&a<player> &ejoined the server!'
+  quit-message: '&c<player> &eleave the server!'

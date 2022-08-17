@@ -1,0 +1,107 @@
+﻿####################################################################################################
+# +----------------------------------------------------------------------------------------------+ #
+# |    _____                       _           _     _           _____       _                   | #
+# |   / ____|                     | |         | |   | |         |  __ \     | |                  | #
+# |  | (___  _   _ _ __   ___ _ __| |     ___ | |__ | |__  _   _| |  | | ___| |_   ___  _____    | #
+# |   \___ \| | | | '_ \ / _ \ '__| |    / _ \| '_ \| '_ \| | | | |  | |/ _ \ | | | \ \/ / _ \   | #
+# |   ____) | |_| | |_) |  __/ |  | |___| (_) | |_) | |_) | |_| | |__| |  __/ | |_| |>  <  __/   | #
+# |  |_____/ \__,_| .__/ \___|_|  |______\___/|_.__/|_.__/ \__, |_____/ \___|_|\__,_/_/\_\___|   | #
+# |               | |                                       __/ |                                | #
+# |               |_|                                      |___/                                 | #
+# |                                                                                              | #
+# |                                                                                              | #
+# |  WIKI:        https://pedrojm96.com/minecraft-plugin/superlobbydeluxe/                       | #
+# |  BUG REPORTS: https://www.spigotmc.org/threads/superlobbydeluxe.132949                       | #
+# |  AUTHOR: PedroJM96 (pedrojm96.com)                                                           | #
+# |  OFFICIAL SERVER: mc.mundopixels.net                                                         | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                          Nodes                                               | #
+# +----------------------------------------------------------------------------------------------+ #
+# |                                                                                              | #
+# |  command: Command to work.                                                                   | #
+# |  permission: Permission to execute the command.                                              | #
+# |  info: Information that the command will show.                                               | #
+# |                                                                                              | #
+# |                                                                                              | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# | To add more commands simply copy and paste in an empty place.                                | #
+# +----------------------------------------------------------------------------------------------+ #
+# +----------------------------------------------------------------------------------------------+ #
+# | For a detailed explanation of the configuration see this page.                               | #
+# | https://pedrojm96.com/minecraft-plugin/superlobbydeluxe/infocommands/                        | #
+# +----------------------------------------------------------------------------------------------+ #
+####################################################################################################
+
+#List of information commands.
+Info:
+  command: info
+  permission: superlobby.info
+  info:
+  - '&a&m------------------&r &6&lMUNDO&f&lPIXELS &a&m-------------------'
+  - '&a- &7For information with an interactive menu type &b/menu'
+  - '&a- &7To play a mode typing &b/server'
+  - '&a- &7To get free rewards type &b/rewards'
+  - '&a- &7To see a list of basic commands type &b/help'
+  - '&a- &7To get Youtubers information, type &b/youtubers'
+  - '&a- &7For information on the rules, type &b/rules'
+  - '&a- &7For information about our community type &b/socialpages'
+  - '&a&m---------------------------------------------------'
+Youtubers:
+  command: youtubers
+  permission: superlobby.youtubers
+  info:
+  - '&a&m------------------&r &6&lMUNDO&f&lPIXELS &a&m-------------------'
+  - '&7If you re a youtuber that meets the following requirements, you may have one
+    of the following ranges, totally free!'
+  - '&6-[&a&lMiniYT&6]-'
+  - '&a>> &6Requirement: &7Have more than 300 subs in your channel.'
+  - '&a>> &6Terms: &7Upload 3 server videos on your channel per month.'
+  - '&a>> &6Cancellation: &7If the user deletes the videos or doesnt meet at the end
+    of the month, the range is removed.'
+  - '&a>> &6Duration: &71 month. It can be renewed while the user meets the conditions'
+  - '&6-[&a&lYoutuber&6]-'
+  - '&a>> &6Requirement: &7Have more than 1000 subs in your channel.'
+  - '&a>> &6Terms: &7Upload 1 server video on your channel per month.'
+  - '&a>> &6Cancellation: &7If the user deletes the videos or doesnt meet at the end
+    of the month, the range is removed.'
+  - '&a>> &6Duration: &71 month. It can be renewed while the user meets the conditions'
+  - '&a&m---------------------------------------------------'
+socialpages:
+  command: socialpages
+  permission: superlobby.socialpages
+  info:
+  - '&a&m------------------&r &6&lMUNDO&f&lPIXELS &a&m-------------------'
+  - '&a- &7facebook page: yourfacebook'
+  - '&a- &7facebook group: yourfacebook'
+  - '&a- &7forum: yourforum'
+  - '&a- &7web: yourweb'
+  - '&a- &7youtuber: yourchanel'
+  - '&a&m---------------------------------------------------'
+rewards:
+  command: rewards
+  permission: superlobby.rewards
+  info:
+  - '&a&m------------------&r &6&lMUNDO&f&lPIXELS &a&m-------------------'
+  - '&a- &7Win prizes by inviting users to the server.'
+  - ' '
+  - '&a- &7With the ReferralsSystem plugin users can earn rewards for inviting'
+  - '&a- &7users to your server to increase the popularity of your server.'
+  - '&a- https://www.spigotmc.org/resources/referralsystem.29709/'
+  - '&a&m---------------------------------------------------'
+rules:
+  command: rules
+  permission: superlobby.rules
+  info:
+  - '&a&m------------------&r &6&lMUNDO&f&lPIXELS &a&m-------------------'
+  - '&a- &7your server rules'
+  - '&a&m---------------------------------------------------'
+help:
+  command: help
+  permission: superlobby.help
+  info:
+  - '&a&m------------------&r &6&lMUNDO&f&lPIXELS &a&m-------------------'
+  - '&a- &7your server HELP '
+  - '&a&m---------------------------------------------------'

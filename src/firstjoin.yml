@@ -1,0 +1,46 @@
+broadcast:
+  enabled: false
+  messages:
+  - '&dI welcome &a<player> &dto our server!'
+tell:
+  enabled: false
+  messages:
+  - '&dWelcome to our server, &a<player>&d!'
+play-sound: 
+  enabled: false
+  sound: LEVEL_UP
+smoke-effect: 
+  enabled: false
+firework: 
+  enabled: false
+kit: 
+  enabled: false
+  items:
+  - wood_sword
+  - wood_pickaxe
+  - wood_spade
+  - wood_axe
+  - crafting_table
+  - cooked_beef
+  - chest
+  - golden_shovel
+  - stick
+  - leather_helmet
+  - leather_chestplate
+  - leather_leggings
+  - leather_boots
+written-books:
+  enabled: false
+  give-item: true
+  title: "&d&lMUNDOPIXELS"
+  name: "&aClick to open"
+  pages:
+  - "&5Welcome to &6MUNDOPIXELS.\n\n&3Use the command &a/help!\n\n\n\n&8&oAtt: &c&8&oMundoPixel STAFF"
+potion-effects:
+  enabled: false
+  effects: 
+  - "SPEED:1:15"
+commands:
+  enabled: false
+  commands:
+  - "lp user <player> parent addtemp vip 1d"
