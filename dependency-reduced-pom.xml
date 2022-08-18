@@ -4,7 +4,7 @@
   <groupId>com.pedrojm96</groupId>
   <artifactId>SuperLobbyDeluxe</artifactId>
   <name>SuperLobbyDeluxe</name>
-  <version>4.4.6</version>
+  <version>4.4.7</version>
   <description>Customize many functions and features of the server lobby in a powerful and free for all.</description>
   <build>
     <sourceDirectory>src</sourceDirectory>
