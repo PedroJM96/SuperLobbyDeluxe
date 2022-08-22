@@ -160,6 +160,9 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 	public void onEnable() {
 		instance = this;
 		this.log = new CoreLog(this,CoreLog.Color.YELLOW);
+		banner();
+		this.log.info("Deluxe Version: V" + this.getDescription().getVersion());
+		this.log.info("Plugin Create by PedroJM96.");
 		loadDependencies();
 		try {
 		   //Ponemos a "Dormir" el programa durante los ms que queremos
@@ -168,13 +171,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 		catch (Exception e) {
 		   System.out.println(e);
 		}
-		banner();
 		
-		
-		
-		
-		this.log.info("Deluxe Version: V" + this.getDescription().getVersion());
-		this.log.info("Plugin Create by PedroJM96.");
 		/******************************************************************************************************************
 		 *                                      Carga de configuracion                                                    *
 		 ******************************************************************************************************************/
