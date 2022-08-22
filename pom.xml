@@ -53,6 +53,10 @@
                 		<pattern>net.byteflux.libby</pattern>
                 		<shadedPattern>com.pedrojm96.superlobby.libs.net.byteflux.libby</shadedPattern>
            			 </relocation>
+					<relocation>
+                		<pattern>org.bstats</pattern>
+                		<shadedPattern>com.pedrojm96.superlobby.libs.org.bstats</shadedPattern>
+           			 </relocation>
                   </relocations>
                 
                   <filters>
@@ -175,6 +179,13 @@
         <version>4.1.1</version>
  		<scope>provided</scope>
       </dependency>
+	  <!--Metrics-->
+     <dependency>
+       <groupId>org.bstats</groupId>
+       <artifactId>bstats-bukkit</artifactId>
+       <version>3.0.0</version>
+       <scope>compile</scope>
+     </dependency>
 	 <dependency>
    		<groupId>net.byteflux</groupId>
     	<artifactId>libby-bukkit-pedrojm96</artifactId> <!-- Replace bukkit if you're using another platform -->

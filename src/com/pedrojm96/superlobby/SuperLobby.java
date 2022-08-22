@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.black_ixx.playerpoints.PlayerPoints;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -303,7 +304,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 		}
 		this.announcer = new Announcer(this);
 		@SuppressWarnings("unused")
-		Metrics metrics = new Metrics(this);
+		Metrics metrics = new Metrics(this,457);
 		checkForUpdates();
 		log.info("&7A total of &b"+ menus.size() +" &7menus were loaded.");
 		this.log.line();

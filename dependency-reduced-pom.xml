@@ -45,6 +45,10 @@
                   <pattern>net.byteflux.libby</pattern>
                   <shadedPattern>com.pedrojm96.superlobby.libs.net.byteflux.libby</shadedPattern>
                 </relocation>
+                <relocation>
+                  <pattern>org.bstats</pattern>
+                  <shadedPattern>com.pedrojm96.superlobby.libs.org.bstats</shadedPattern>
+                </relocation>
               </relocations>
               <filters>
                 <filter>
