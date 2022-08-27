@@ -1,0 +1,11 @@
+name: SuperLobby
+version: 4.4.9
+main: com.pedrojm96.superlobby.SuperLobbyLoader
+
+api-version: 1.13
+author: PedroJM96
+description: Customize many functions and features of the server lobby in a powerful and free for all.
+softdepend: [PlaceholderAPI,Vault,PlayerPoints,ViaVersion,ProtocolLib]
+maintainer: PedroJM96
+authors: [PedroJM96]
+website: https://pedrojm96.com/minecraft-plugin/superlobby/

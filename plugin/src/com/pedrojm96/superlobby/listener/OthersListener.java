@@ -185,12 +185,12 @@ public class OthersListener implements Listener{
 											 if(money >= item.getPrice() || item.getPrice() == 0){
 												 double t = money - item.getPrice();
 												 Utils.setMoney(t,p,plugin);	
-												 item.executeCommands(p,plugin,AllString.prefix);
+												 item.executeCommands(p,plugin.getInstance(),AllString.prefix);
 											 }else{
 												 p.sendMessage(CoreColor.colorCodes(AllString.prefix+AllString.no_money));
 											 }
 										 }else{
-											 item.executeCommands(p,plugin,AllString.prefix);
+											 item.executeCommands(p,plugin.getInstance(),AllString.prefix);
 										 }
 									 }else{
 										 p.sendMessage(CoreColor.colorCodes(AllString.prefix+AllString.error_no_permission));
@@ -209,12 +209,12 @@ public class OthersListener implements Listener{
 										 if(money >= item.getPrice() || item.getPrice() == 0){
 											 double t = money - item.getPrice();
 											 Utils.setMoney(t,p,plugin);	
-											 item.executeCommands(p,plugin,AllString.prefix);
+											 item.executeCommands(p,plugin.getInstance(),AllString.prefix);
 										 }else{
 											 p.sendMessage(CoreColor.colorCodes(AllString.prefix+AllString.no_money));
 										 }
 									 }else{
-										 item.executeCommands(p,plugin,AllString.prefix);
+										 item.executeCommands(p,plugin.getInstance(),AllString.prefix);
 									 }
 								 }else{
 									 p.sendMessage(CoreColor.colorCodes(AllString.prefix+AllString.error_no_permission));

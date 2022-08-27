@@ -21,22 +21,22 @@ public class Announcer {
 		//Messages
 		if(plugin.configAnnouncer.getBoolean("message.enable")) {
 			int interval = plugin.configAnnouncer.getInt("message.interval");
-			timers.add(new MessageAnnouncerRun(plugin).runTaskTimer(plugin, 0L, interval).getTaskId());
+			timers.add(new MessageAnnouncerRun(plugin).runTaskTimer(plugin.getInstance(), 0L, interval).getTaskId());
 		}
-		//BossBar Anunciador mensajes automáticos del bossbar.
+		//BossBar Anunciador mensajes automï¿½ticos del bossbar.
 		if(plugin.configAnnouncer.getBoolean("bossbar.enable")) {
 			int interval = plugin.configAnnouncer.getInt("bossbar.interval");
-			timers.add(new BossbarAnnouncerRun(plugin).runTaskTimer(plugin, 0L, interval).getTaskId());
+			timers.add(new BossbarAnnouncerRun(plugin).runTaskTimer(plugin.getInstance(), 0L, interval).getTaskId());
 		}
 		//Titles
 		if(plugin.configAnnouncer.getBoolean("titles.enable")) {
 			int interval = plugin.configAnnouncer.getInt("titles.interval");
-			timers.add(new TitlesAnnouncerRun(plugin).runTaskTimer(plugin, 0L, interval).getTaskId());
+			timers.add(new TitlesAnnouncerRun(plugin).runTaskTimer(plugin.getInstance(), 0L, interval).getTaskId());
 		}
 		//Actionbar
 		if(plugin.configAnnouncer.getBoolean("actionbar.enable")) {
 			int interval = plugin.configAnnouncer.getInt("actionbar.interval");
-			timers.add(new ActionbarAnnouncerRun(plugin).runTaskTimer(plugin, 0L, interval).getTaskId());
+			timers.add(new ActionbarAnnouncerRun(plugin).runTaskTimer(plugin.getInstance(), 0L, interval).getTaskId());
 		}
 		
 	}
@@ -47,22 +47,22 @@ public class Announcer {
 		//Messages
 		if(plugin.configAnnouncer.getBoolean("message.enable")) {
 			int interval = plugin.configAnnouncer.getInt("message.interval");
-			timers.add(new MessageAnnouncerRun(plugin).runTaskTimer(plugin, 0L, interval).getTaskId());
+			timers.add(new MessageAnnouncerRun(plugin).runTaskTimer(plugin.getInstance(), 0L, interval).getTaskId());
 		}
-		//BossBar Anunciador mensajes automáticos del bossbar.
+		//BossBar Anunciador mensajes automï¿½ticos del bossbar.
 		if(plugin.configAnnouncer.getBoolean("bossbar.enable")) {
 			int interval = plugin.configAnnouncer.getInt("bossbar.interval");
-			timers.add(new BossbarAnnouncerRun(plugin).runTaskTimer(plugin, 0L, interval).getTaskId());
+			timers.add(new BossbarAnnouncerRun(plugin).runTaskTimer(plugin.getInstance(), 0L, interval).getTaskId());
 		}
 		//Titles
 		if(plugin.configAnnouncer.getBoolean("titles.enable")) {
 			int interval = plugin.configAnnouncer.getInt("titles.interval");
-			timers.add(new TitlesAnnouncerRun(plugin).runTaskTimer(plugin, 0L, interval).getTaskId());
+			timers.add(new TitlesAnnouncerRun(plugin).runTaskTimer(plugin.getInstance(), 0L, interval).getTaskId());
 		}
 		//Actionbar
 		if(plugin.configAnnouncer.getBoolean("actionbar.enable")) {
 			int interval = plugin.configAnnouncer.getInt("actionbar.interval");
-			timers.add(new ActionbarAnnouncerRun(plugin).runTaskTimer(plugin, 0L, interval).getTaskId());
+			timers.add(new ActionbarAnnouncerRun(plugin).runTaskTimer(plugin.getInstance(), 0L, interval).getTaskId());
 		}	
 	}
 	

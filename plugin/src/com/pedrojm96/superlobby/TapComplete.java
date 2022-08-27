@@ -35,7 +35,7 @@ public class TapComplete {
 		
 	
 		protocolManager.addPacketListener(
-				new PacketAdapter(superlobby, ListenerPriority.NORMAL,PacketType.Play.Server.TAB_COMPLETE) {
+				new PacketAdapter(superlobby.getInstance(), ListenerPriority.NORMAL,PacketType.Play.Server.TAB_COMPLETE) {
 					
 					@Override
 					@EventHandler(priority = EventPriority.HIGHEST)
@@ -72,7 +72,7 @@ public class TapComplete {
 		});
 		
 		protocolManager.addPacketListener(
-				new PacketAdapter(superlobby, ListenerPriority.NORMAL,PacketType.Play.Client.TAB_COMPLETE) {
+				new PacketAdapter(superlobby.getInstance(), ListenerPriority.NORMAL,PacketType.Play.Client.TAB_COMPLETE) {
 					
 					@Override
 					@EventHandler(priority = EventPriority.HIGHEST)

@@ -37,7 +37,7 @@ public class BossbarAnnouncerRun extends BukkitRunnable{
 			
 			 //new BossBar1(p,mesage,bc,bs,time);	 
 			 
-			 CoreBossBar.sendBossBar(p, mesage, bc, bs, time<1?1:time,plugin);
+			 CoreBossBar.sendBossBar(p, mesage, bc, bs, time<1?1:time,plugin.getInstance());
 		}
 		if(bossbarc>=(nodoALL.size() - 1)){
 			bossbarc = 0;

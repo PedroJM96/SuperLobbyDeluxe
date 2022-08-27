@@ -32,7 +32,7 @@ public class ActionbarAnnouncerRun extends BukkitRunnable{
 			int stay = plugin.configAnnouncer.getInt("actionbar.list."+nodo+".stay");
 			String mesage = plugin.configAnnouncer.getString("actionbar.list."+nodo+".message");
 			mesage = CoreVariables.replace(mesage, p);
-			CoreActionBar.sendActionBar(p, mesage, stay,plugin);
+			CoreActionBar.sendActionBar(p, mesage, stay,plugin.getInstance());
 			
 		}
 		if(ationc>=(nodoALL.size() - 1)){

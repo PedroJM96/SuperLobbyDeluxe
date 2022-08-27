@@ -43,6 +43,10 @@ import com.pedrojm96.core.effect.CoreBossBar;
 import com.pedrojm96.core.effect.CorePlayerListHeaderFooter;
 import com.pedrojm96.core.inventory.CoreItem;
 import com.pedrojm96.core.inventory.menu.CoreMenu;
+import com.pedrojm96.core.libraryloader.CoreLoader;
+import com.pedrojm96.core.libraryloader.CoreURLClassLoader;
+import com.pedrojm96.core.libraryloader.CoreURLClassLoaderHelper;
+import com.pedrojm96.core.libraryloader.LibraryLoader;
 import com.pedrojm96.superlobby.listener.BlockListener;
 import com.pedrojm96.superlobby.listener.EntityListener;
 import com.pedrojm96.superlobby.listener.OthersListener;
@@ -51,20 +55,18 @@ import com.pedrojm96.superlobby.listener.TapCompleteListener;
 import com.pedrojm96.superlobby.runnable.AlwaysDayNightRun;
 import com.pedrojm96.superlobby.runnable.BoardAnimationRun;
 import com.pedrojm96.superlobby.runnable.TabUpdateRun;
-import com.pedrojm96.superlobby.subCommand.HelpCMD;
-import com.pedrojm96.superlobby.subCommand.OpenMenuCMD;
-import com.pedrojm96.superlobby.subCommand.ReloadCMD;
-import com.pedrojm96.superlobby.subCommand.RemSpawnCMD;
-import com.pedrojm96.superlobby.subCommand.SetSpawnCMD;
-import com.pedrojm96.superlobby.subCommand.SetSpawnPermissionCMD;
+import com.pedrojm96.superlobby.subcommand.HelpCMD;
+import com.pedrojm96.superlobby.subcommand.OpenMenuCMD;
+import com.pedrojm96.superlobby.subcommand.ReloadCMD;
+import com.pedrojm96.superlobby.subcommand.RemSpawnCMD;
+import com.pedrojm96.superlobby.subcommand.SetSpawnCMD;
+import com.pedrojm96.superlobby.subcommand.SetSpawnPermissionCMD;
 
-import net.byteflux.libby.BukkitLibraryManager;
-import net.byteflux.libby.Library;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
-public class SuperLobby extends JavaPlugin implements CorePlugin{
+public class SuperLobby implements CoreLoader{
 
 	public CoreConfig config;
 	public CoreConfig configSpawn;
@@ -96,9 +98,22 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 	
 	public Announcer announcer;
 	
-	public SuperLobby instance;
+	public final JavaPlugin instance;
+	public final CorePlugin loader;
+	public  static SuperLobby plugin;
+	private final CoreURLClassLoaderHelper classPathAppender;
 	
 	public int spawns = 0;
+	
+	
+	public SuperLobby(CorePlugin loader) {
+		this.loader = loader;
+        this.instance = loader.getInstance();
+        this.log = loader.getLog();
+        this.classPathAppender = new CoreURLClassLoader(getClass().getClassLoader());
+        //this.classPathAppender = new JarInJarClassPathAppender(getClass().getClassLoader());
+    }
+	
 	
 	
 	public void banner() {
@@ -118,51 +133,25 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 	
 	 public void loadDependencies(){
 		 this.log.info("Loading Libraries...");
-		 BukkitLibraryManager bukkitLibraryManager = new BukkitLibraryManager(this);
-			Library commons_lang_2_6 = Library.builder()
-				    .groupId("commons-lang") // "{}" is replaced with ".", useful to avoid unwanted changes made by maven-shade-plugin
-				    .artifactId("commons-lang")
-				    .version("2.6")
-				     // The following are optional
-
-				     // Sets an id for the library
-				    .id("commons-lang-2-6")
-				    .isolatedLoad(true)
-				    .build();
-			Library commons_codec_1_15 = Library.builder()
-				    .groupId("commons-codec") // "{}" is replaced with ".", useful to avoid unwanted changes made by maven-shade-plugin
-				    .artifactId("commons-codec")
-				    .version("1.15")
-				     // The following are optional
-
-				     // Sets an id for the library
-				    .id("commons-codec-1-15")
-				    .isolatedLoad(true)
-				    .build();
-			Library com_google_code_gson_2_9_0 = Library.builder()
-				    .groupId("com{}google{}code{}gson") // "{}" is replaced with ".", useful to avoid unwanted changes made by maven-shade-plugin
-				    .artifactId("gson")
-				    .version("2.9.0")
-				     // The following are optional
-
-				     // Sets an id for the library
-				    .id("com-google-code-gson-2-9-0")
-				    .isolatedLoad(true)
-				    .build();
-			bukkitLibraryManager.addMavenCentral();
-			bukkitLibraryManager.loadLibrary(commons_lang_2_6);
-			bukkitLibraryManager.loadLibrary(commons_codec_1_15);
-			bukkitLibraryManager.loadLibrary(com_google_code_gson_2_9_0);
+		 LibraryLoader lib = new LibraryLoader(this.classPathAppender, this.log,this.loader);
+		 try {
+			  lib.loadLib( "commons-lang", "commons-lang", "2.6");
+			  lib.loadLib( "commons-codec", "commons-codec", "1.15");
+			  lib.loadLib( "com.google.code.gson", "gson", "2.9.0");
+		     
+		 } catch (IOException e) {
+		      e.printStackTrace();
+		 } 
 	 }
 	 
 	 
 	 
 	 
 	public void onEnable() {
-		instance = this;
-		this.log = new CoreLog(this,CoreLog.Color.YELLOW);
+		plugin = this;
+		this.log = this.loader.getLog();
 		banner();
-		this.log.info("Deluxe Version: V" + this.getDescription().getVersion());
+		this.log.info("Deluxe Version: V" + this.instance.getDescription().getVersion());
 		this.log.info("Plugin Create by PedroJM96.");
 		loadDependencies();
 		try {
@@ -178,9 +167,9 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 		 ******************************************************************************************************************/
 		this.log.info("Loading configuration...");
 		FileConfiguration oldconfig = new YamlConfiguration();
-		File oldfile = new File(this.getDataFolder(),"config.yml");
+		File oldfile = new File(this.instance.getDataFolder(),"config.yml");
 		
-		File backfile = new File(this.getDataFolder(),"old-config.yml");
+		File backfile = new File(this.instance.getDataFolder(),"old-config.yml");
 		
 		if(oldfile.exists()) {
 			try {
@@ -200,30 +189,30 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 				oldfile.delete();
 			}	
 		}
-		this.config = new CoreConfig(this,"config",this.log,this.getResource("config.yml"),true);
+		this.config = new CoreConfig(this.instance,"config",this.log,this.instance.getResource("config.yml"),true);
 		log.seDebug(this.config.getBoolean("debug"));
 		loadMessages();
 		AllString.load(this.config, this.configMessages);
-		this.configSpawn = new CoreConfig(this,"spawn",this.log,this.getResource("spawn.yml"),false);
+		this.configSpawn = new CoreConfig(this.instance,"spawn",this.log,this.instance.getResource("spawn.yml"),false);
 		loadSpawn();
-		this.configChat = new CoreConfig(this,"chat",this.log,this.getResource("chat.yml"),false);
-		this.configInfoCommands = new CoreConfig(this,"infocommands",this.log,this.getResource("infocommands.yml"),false);
+		this.configChat = new CoreConfig(this.instance,"chat",this.log,this.instance.getResource("chat.yml"),false);
+		this.configInfoCommands = new CoreConfig(this.instance,"infocommands",this.log,this.instance.getResource("infocommands.yml"),false);
 		loadInfoCommands();
-		this.configCustomEvents = new CoreConfig(this,"customevents",this.log,this.getResource("customevents.yml"),false);
+		this.configCustomEvents = new CoreConfig(this.instance,"customevents",this.log,this.instance.getResource("customevents.yml"),false);
 		loadCustomEvents();
-		this.configItem = new CoreConfig(this,"items",this.log,this.getResource("items.yml"),false);
+		this.configItem = new CoreConfig(this.instance,"items",this.log,this.instance.getResource("items.yml"),false);
 		loadItems();
-		this.configMenus = new CoreConfig(this,"menus",this.log,this.getResource("menus.yml"),false);
+		this.configMenus = new CoreConfig(this.instance,"menus",this.log,this.instance.getResource("menus.yml"),false);
 		loadMenus();
-		this.configBoard = new CoreConfig(this,"board",this.log,this.getResource("board.yml"),false);
-		this.configAnnouncer = new CoreConfig(this,"announcer",this.log,this.getResource("announcer.yml"),false);
+		this.configBoard = new CoreConfig(this.instance,"board",this.log,this.instance.getResource("board.yml"),false);
+		this.configAnnouncer = new CoreConfig(this.instance,"announcer",this.log,this.instance.getResource("announcer.yml"),false);
 		
-		this.configFirstJoin = new CoreConfig(this,"firstjoin",this.log,this.getResource("firstjoin.yml"),true);
+		this.configFirstJoin = new CoreConfig(this.instance,"firstjoin",this.log,this.instance.getResource("firstjoin.yml"),true);
 		loadFirsJoinKit();
 		/******************************************************************************************************************
 		 *                                  Regsitro de canal de mensaje para bungeecord                                  *
 		 ******************************************************************************************************************/
-		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+		Bukkit.getMessenger().registerOutgoingPluginChannel(this.instance, "BungeeCord");
 		/******************************************************************************************************************
 		 *                                          Registro de comandos                                                  *
 		 ******************************************************************************************************************/
@@ -238,19 +227,19 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 
 	
 		
-		CoreCommands.registerCommand(mainCommand, this);
+		CoreCommands.registerCommand(mainCommand, this.loader);
 		//this.getCommand("superlobby").setExecutor(mainCommand);
 		
 		/******************************************************************************************************************
 		 *                                          Registro de eventos                                                   *
 		 ******************************************************************************************************************/
-		PluginManager pm = this.getServer().getPluginManager();
-		pm.registerEvents(new PlayerListener(this), this);
-		pm.registerEvents(new BlockListener(this), this);
-		pm.registerEvents(new EntityListener(this), this);
-		pm.registerEvents(new OthersListener(this), this);
+		PluginManager pm = this.instance.getServer().getPluginManager();
+		pm.registerEvents(new PlayerListener(this), this.instance);
+		pm.registerEvents(new BlockListener(this), this.instance);
+		pm.registerEvents(new EntityListener(this), this.instance);
+		pm.registerEvents(new OthersListener(this), this.instance);
 		
-		new AlwaysDayNightRun(this).runTaskTimer(this, 20L, 200L);
+		new AlwaysDayNightRun(this).runTaskTimer(this.instance, 20L, 200L);
 		CoreVariables.iniUcode();
 		this.permission = setupVaultPermissions();
 		if(this.permission != null) {
@@ -283,7 +272,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 
 				}
 			}else {
-				pm.registerEvents(new TapCompleteListener(this), this);
+				pm.registerEvents(new TapCompleteListener(this), this.instance);
 			}
 		}
 		
@@ -297,14 +286,14 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 		}
 		if(config.getInt("join-tab.update") > 0){
 			long pe = config.getInt("join-tab.update");
-			new TabUpdateRun(this).runTaskTimer(this, 0L, pe);
+			new TabUpdateRun(this).runTaskTimer(this.instance, 0L, pe);
 		}
 		if(this.configBoard.getBoolean("settings-enable")){
-			new BoardAnimationRun(this).runTaskTimer(this, 0L, 1L);
+			new BoardAnimationRun(this).runTaskTimer(this.instance, 0L, 1L);
 		}
 		this.announcer = new Announcer(this);
 		@SuppressWarnings("unused")
-		Metrics metrics = new Metrics(this,457);
+		Metrics metrics = new Metrics(this.instance,457);
 		checkForUpdates();
 		log.info("&7A total of &b"+ menus.size() +" &7menus were loaded.");
 		this.log.line();
@@ -393,7 +382,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 		            }
 				}
         		
-        	}.runTask(this);
+        	}.runTask(this.instance);
         	
         	
         } 
@@ -418,7 +407,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 			for(String s : k) {
 				if(configSpawn.contains(s+".permission")) {
 					 String perm = configSpawn.getString(s+".permission");
-					 World w = getServer().getWorld(configSpawn.getString(s+".world"));
+					 World w = this.instance.getServer().getWorld(configSpawn.getString(s+".world"));
 				     double x = configSpawn.getDouble(s+".x");
 					 double y = configSpawn.getDouble(s+".y");
 					 double z = configSpawn.getDouble(s+".z");
@@ -433,7 +422,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 						 spawnss.put(perm, spawn);
 					 }
 				 }else {
-					 World w = getServer().getWorld(configSpawn.getString(s+".world"));
+					 World w = this.instance.getServer().getWorld(configSpawn.getString(s+".world"));
 				     double x = configSpawn.getDouble(s+".x");
 					 double y = configSpawn.getDouble(s+".y");
 					 double z = configSpawn.getDouble(s+".z");
@@ -455,7 +444,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 	public void teleportToSpawn(final Player p) {
 		
 		 if (this.spawnss.isEmpty()) {
-			 Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+			 Bukkit.getScheduler().scheduleSyncDelayedTask(this.instance, new Runnable() {
 					public void run() {
 						CoreColor.message(p, AllString.prefix + AllString.error_spawn_not_set);
 					}
@@ -486,7 +475,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 		Set<String> keymenu =  configMenus.getKeys(false);
 		for (String nodomenu : keymenu){
 			ConfigurationSection sectionmenu = configMenus.getConfigurationSection(nodomenu);
-			CoreMenu menu = new CoreMenu(sectionmenu.getString("settings-name"),sectionmenu.getConfigurationSection("items"),this);
+			CoreMenu menu = new CoreMenu(sectionmenu.getString("settings-name"),sectionmenu.getConfigurationSection("items"),this.loader);
 			menu.setPerm(sectionmenu.getString("settings-permission"));
 			menu.setRows(sectionmenu.getInt("settings-rows"));
 			menu.setCommands(sectionmenu.getString("settings-open-commands"));
@@ -505,7 +494,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 			
 			if(this.config.getBoolean("menu") && menu.getCommands() != null) {
 				CommandsMenu cm = new CommandsMenu(this,nodomenu);
-	    		CoreCommands.registerCommand(cm, this);	
+	    		CoreCommands.registerCommand(cm, this.loader);	
 			 }
 	
 		}	
@@ -629,7 +618,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 				infoCommands.add(infoc);
 				if(config.getBoolean("info-commands")) {
 					 CommandsInfo cm = new CommandsInfo(this,infoc);
-			    	 CoreCommands.registerCommand(cm, this);	
+			    	 CoreCommands.registerCommand(cm, this.loader);	
 				}
 			}else {
 				log.alert("InfoCommands: The nodo " + nodo + " has no info!");
@@ -647,7 +636,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 			{
 				log.alert("CustomEvents: The customjoin " + nodo + " has no permission!");
 			}
-			CustomEvents cj = new CustomEvents(a.getString("permission"),this);
+			CustomEvents cj = new CustomEvents(a.getString("permission"),this.instance);
 			if (a.isSet("join-message")){
 				cj.setJoinMessage(a.getString("join-message"));
 			}
@@ -690,7 +679,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 			return null;
 	    }	
 		Permission retorno = null;
-	    RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+	    RegisteredServiceProvider<Permission> rsp = this.instance.getServer().getServicesManager().getRegistration(Permission.class);
 	    try{
 	    	retorno = ((Permission)rsp.getProvider());
 	    }catch(NullPointerException e){
@@ -705,7 +694,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 			return null;
 	    }
 		Chat retorno = null;
-	    RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+	    RegisteredServiceProvider<Chat> rsp = this.instance.getServer().getServicesManager().getRegistration(Chat.class);
 	    try{
 		   retorno = ((Chat)rsp.getProvider());
 	    }catch(NullPointerException e){
@@ -745,17 +734,17 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 	public void loadMessages(){
 		String m = config.getString("messages").toUpperCase();
 		if(m=="EN") {
-			this.configMessages = new CoreConfig(this,"messages_EN",this.log,this.getResource("messages_EN.yml"),true);
+			this.configMessages = new CoreConfig(this.instance,"messages_EN",this.log,this.instance.getResource("messages_EN.yml"),true);
 		}else if(m=="ES") {
-			this.configMessages = new CoreConfig(this,"messages_ES",this.log,this.getResource("messages_ES.yml"),true);
+			this.configMessages = new CoreConfig(this.instance,"messages_ES",this.log,this.instance.getResource("messages_ES.yml"),true);
 		}else if(m=="NL") {
-			this.configMessages = new CoreConfig(this,"messages_NL",this.log,this.getResource("messages_NL.yml"),true);
+			this.configMessages = new CoreConfig(this.instance,"messages_NL",this.log,this.instance.getResource("messages_NL.yml"),true);
 		}else if(m=="ZH") {
-			this.configMessages = new CoreConfig(this,"messages_ZH",this.log,this.getResource("messages_ZH.yml"),true);
+			this.configMessages = new CoreConfig(this.instance,"messages_ZH",this.log,this.instance.getResource("messages_ZH.yml"),true);
 		}else if(m=="RU") {
-			this.configMessages = new CoreConfig(this,"messages_RU",this.log,this.getResource("messages_RU.yml"),true);
+			this.configMessages = new CoreConfig(this.instance,"messages_RU",this.log,this.instance.getResource("messages_RU.yml"),true);
 		}else {
-			this.configMessages = new CoreConfig(this,"messages_EN",this.log,this.getResource("messages_EN.yml"),true);
+			this.configMessages = new CoreConfig(this.instance,"messages_EN",this.log,this.instance.getResource("messages_EN.yml"),true);
 		}
 	}
 	
@@ -778,7 +767,7 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 					for(CoreItem item : this.items) {
 						
 							if(item.hasPerm(p)) {
-								item.give(p, this);
+								item.give(p, this.loader);
 							}else {
 								this.log.debug("The player "+p.getName() + " do not have permission to receive the item "+item.getName());
 							}
@@ -797,7 +786,15 @@ public class SuperLobby extends JavaPlugin implements CorePlugin{
 
 	public JavaPlugin getInstance() {
 		// TODO Auto-generated method stub
-		return this;
+		return this.loader.getInstance();
+	}
+
+
+
+	@Override
+	public void onLoad() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

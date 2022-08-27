@@ -212,7 +212,7 @@ public class PlayerListener implements Listener{
 			 {
 				for(CoreItem item : plugin.items) {
 					if(item.hasPerm(e.getPlayer())) {
-						item.give(e.getPlayer(), plugin);
+						item.give(e.getPlayer(), plugin.loader);
 					}else {
 						plugin.log.debug("The player "+e.getPlayer().getName() + " do not have permission to receive the item "+item.getName());
 					}
@@ -232,7 +232,7 @@ public class PlayerListener implements Listener{
 	 public void onRespawnLobbyItem(final PlayerRespawnEvent e)
 	 {
 		 if (plugin.config.getBoolean("lobby-items.respawn")){
-			 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
+			 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin.getInstance(), new Runnable()
 			 {
 				 public void run()
 				 {
@@ -242,7 +242,7 @@ public class PlayerListener implements Listener{
 					 if (plugin.config.getStringList("lobby-items.world").contains(e.getPlayer().getWorld().getName())) {
 						 for(CoreItem item : plugin.items) {
 							 if(item.hasPerm(e.getPlayer())) {
-								 item.give(e.getPlayer(), plugin);
+								 item.give(e.getPlayer(), plugin.loader);
 							 }else {
 								 plugin.log.debug("The player "+e.getPlayer().getName() + " do not have permission to receive the item "+item.getName());
 							 }
@@ -265,7 +265,7 @@ public class PlayerListener implements Listener{
 	 public void changeWorldLobbyItem(final PlayerChangedWorldEvent e)
 	 {
 		 if (plugin.config.getBoolean("lobby-items.join-world")){
-			 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
+			 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin.getInstance(), new Runnable()
 			 {
 				 public void run()
 				 {
@@ -275,7 +275,7 @@ public class PlayerListener implements Listener{
 					 if (plugin.config.getStringList("lobby-items.world").contains(e.getPlayer().getWorld().getName())) {
 						 for(CoreItem item : plugin.items) {
 							 if(item.hasPerm(e.getPlayer())) {
-								 item.give(e.getPlayer(), plugin);
+								 item.give(e.getPlayer(), plugin.loader);
 							 }else {
 								 plugin.log.debug("The player "+e.getPlayer().getName() + " do not have permission to receive the item "+item.getName());
 							 }
@@ -314,7 +314,7 @@ public class PlayerListener implements Listener{
 								 }
 								 if(vali) {
 									 if(item.hasPerm(e.getPlayer())) {
-										 item.executeCommands(e.getPlayer(), plugin, AllString.prefix+AllString.click_wait,AllString.prefix);
+										 item.executeCommands(e.getPlayer(), plugin.loader, AllString.prefix+AllString.click_wait,AllString.prefix);
 										 e.getPlayer().updateInventory();
 									 }else {
 										 e.getPlayer().sendMessage(CoreColor.colorCodes(AllString.prefix+AllString.error_no_permission));
@@ -329,7 +329,7 @@ public class PlayerListener implements Listener{
 								 }
 							 }else {
 								 if(item.hasPerm(e.getPlayer())) {
-									 item.executeCommands(e.getPlayer(), plugin, AllString.prefix+AllString.click_wait,AllString.prefix);
+									 item.executeCommands(e.getPlayer(), plugin.loader, AllString.prefix+AllString.click_wait,AllString.prefix);
 									 e.getPlayer().updateInventory();
 								 }else {
 									 e.getPlayer().sendMessage(CoreColor.colorCodes(AllString.prefix+AllString.error_no_permission));
@@ -481,7 +481,7 @@ public class PlayerListener implements Listener{
 			 String bc = plugin.config.getString("join-boss-bar.color");
 			 String bs = plugin.config.getString("join-boss-bar.style");
 			 int time = plugin.config.getInt("join-boss-bar.seconds");
-			 CoreBossBar.sendBossBar(e.getPlayer(), mesage, bc, bs, time<1?1:time,plugin);
+			 CoreBossBar.sendBossBar(e.getPlayer(), mesage, bc, bs, time<1?1:time,plugin.getInstance());
 		 } 
 		 
 		 if (plugin.config.getBoolean("join-tab.enable")){
@@ -510,7 +510,7 @@ public class PlayerListener implements Listener{
 		 if (plugin.config.getBoolean("join-action-bar.enable")){
 			 String msg = CoreVariables.replace(plugin.config.getString("join-action-bar.message"), e.getPlayer());
 			 int time = Integer.valueOf(plugin.config.getInt("join-action-bar.seconds"));
-			 CoreActionBar.sendActionBar(e.getPlayer(), msg,time*20,plugin);
+			 CoreActionBar.sendActionBar(e.getPlayer(), msg,time*20,plugin.getInstance());
 		 }
 		 
 	 }
@@ -803,7 +803,7 @@ public class PlayerListener implements Listener{
 		   					    plugin.playerBoards.put(e.getPlayer(), board);	
 		                	
 		                }
-		            }.runTaskLater(plugin, 20L);	
+		            }.runTaskLater(plugin.getInstance(), 20L);	
 				 
 			 }
 		 }
@@ -835,7 +835,7 @@ public class PlayerListener implements Listener{
 	 public void onChangeWorldBoard(PlayerChangedWorldEvent e) {
 		 if (plugin.configBoard.getBoolean("settings-enable")){
 			 final Player p = e.getPlayer();
-			 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable()
+			 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin.getInstance(), new Runnable()
 			 {
 				 public void run()
 				 {
@@ -876,7 +876,7 @@ public class PlayerListener implements Listener{
 			 if(p.isOp()) {
 				 new BukkitRunnable() {
 					 public void run() {
-						 CoreSpigotUpdater updater = new CoreSpigotUpdater(plugin, 20400);
+						 CoreSpigotUpdater updater = new CoreSpigotUpdater(plugin.getInstance(), 20400);
 						 try {
 							 if (updater.checkForUpdates()) {
 								 CoreColor.message(p, AllString.prefix+"&7Update avaliable for SuperLobby. Please update to recieve latest version.");
@@ -884,7 +884,7 @@ public class PlayerListener implements Listener{
 							 }
 						} catch (Exception e) {}	 
 					 }
-				 }.runTaskAsynchronously(plugin);
+				 }.runTaskAsynchronously(plugin.getInstance());
 			 }	
 		 }
 	 }
@@ -1252,7 +1252,7 @@ public class PlayerListener implements Listener{
            
         	if(plugin.configFirstJoin.getBoolean("broadcast.enabled")) {
         		e.setJoinMessage(null);
-        		for(Player onlinePlayer: plugin.getServer().getOnlinePlayers()) {
+        		for(Player onlinePlayer: plugin.getInstance().getServer().getOnlinePlayers()) {
         			for(String line : plugin.configFirstJoin.getStringList("broadcast.messages")) {
         				CoreColor.message(onlinePlayer, CoreVariables.replace(line, player));
         			}
@@ -1266,7 +1266,7 @@ public class PlayerListener implements Listener{
         	}
         	
         	if(plugin.configFirstJoin.getBoolean("play-sound.enabled")) {
-        		for(Player onlinePlayer: plugin.getServer().getOnlinePlayers()) {
+        		for(Player onlinePlayer: plugin.getInstance().getServer().getOnlinePlayers()) {
         			Sound sound = Sound.valueOf(plugin.configFirstJoin.getString("play-sound.sound").toUpperCase());
         			onlinePlayer.playSound(onlinePlayer.getLocation(), sound, 1.0F, 1.0F);
         		}
@@ -1282,7 +1282,7 @@ public class PlayerListener implements Listener{
         	if(plugin.configFirstJoin.getBoolean("firework.enabled")) {
         		for(int i=0;i<5;i++){
         			int m = i*10;
-        			this.plugin.getServer().getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable() {
+        			this.plugin.getInstance().getServer().getScheduler().scheduleSyncDelayedTask(this.plugin.getInstance(), new Runnable() {
         				  public void run() {
         					  fireword(player);
         				  }
@@ -1309,7 +1309,7 @@ public class PlayerListener implements Listener{
         	}
         	if(plugin.configFirstJoin.getBoolean("commands.enabled")) {
                 for (String comando : plugin.configFirstJoin.getStringList("commands.commands")) {
-                	CoreExecuteComands c = new CoreExecuteComands(player,CoreVariables.replace(comando, player),plugin,AllString.prefix);
+                	CoreExecuteComands c = new CoreExecuteComands(player,CoreVariables.replace(comando, player),plugin.getInstance(),AllString.prefix);
         			c.execute();
                 }
         	}

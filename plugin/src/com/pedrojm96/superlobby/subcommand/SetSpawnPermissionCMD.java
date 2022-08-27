@@ -1,4 +1,4 @@
-package com.pedrojm96.superlobby.subCommand;
+package com.pedrojm96.superlobby.subcommand;
 
 import java.util.List;
 

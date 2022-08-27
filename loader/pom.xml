@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>SuperLobbyLoader</artifactId>
+  <packaging>jar</packaging>
+  <properties>
+        <project.java.version>1.8</project.java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+  <parent>
+        <groupId>com.pedrojm96</groupId>
+        <artifactId>SuperLobbyDeluxe</artifactId>
+        <version>4.4.9</version>
+  </parent>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+	<finalName>SuperLobbyDeluxe-${project.version}</finalName>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>${project.java.version}</source>
+          <target>${project.java.version}</target>
+		  <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+            <execution>
+                <phase>package</phase>
+                <goals>
+                    <goal>shade</goal>
+                </goals>
+                
+                <configuration>
+				  <finalName>SuperLobbyDeluxe-${project.version}-shaded</finalName>
+                  <relocations>
+                    <relocation>
+                      <pattern>com.pedrojm96.core</pattern>
+                      <shadedPattern>com.pedrojm96.superlobby</shadedPattern>
+                    </relocation>
+                  </relocations>
+                
+                  <filters>
+                    <filter>
+                      <artifact>com.pedrojm96:CoreLibBukkit</artifact>
+                      <includes>
+                    		<include>com/pedrojm96/core/libraryloader/*.class</include>
+							<include>com/pedrojm96/core/CorePlugin*.class</include>
+							<include>com/pedrojm96/core/CoreLog*.class</include>
+							<include>com/pedrojm96/core/CoreColor*.class</include>
+                  	   </includes>
+                    </filter>
+                  </filters>
+                </configuration>
+                
+            </execution>
+        </executions>
+        <configuration>
+            <shadedArtifactAttached>true</shadedArtifactAttached>
+            <shadedClassifierName>shaded</shadedClassifierName>
+        </configuration>
+      </plugin>
+      
+      
+    </plugins>
+  </build>
+  <repositories>
+	<!--Spigot API-->
+     <repository>
+       <id>spigot-repo</id>
+       <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+     </repository>
+ </repositories>
+	
+  <dependencies>
+		<!--Spigot API-->
+    <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
+      <version>1.18.1-R0.1-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+     <dependency>
+       <groupId>com.pedrojm96</groupId>
+       <artifactId>CoreLibBukkit</artifactId>
+       <version>[2.0.0,)</version>
+       <scope>compile</scope>
+     </dependency>
+  </dependencies>
+  
+  
+</project>

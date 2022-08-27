@@ -1,0 +1,191 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>SuperLobbyPlugin</artifactId>
+  <packaging>jar</packaging>
+  <description>Simple, easy, and intuitive Stats for minecraft.</description>
+  <properties>
+        <project.java.version>1.8</project.java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+  <parent>
+        <groupId>com.pedrojm96</groupId>
+        <artifactId>SuperLobbyDeluxe</artifactId>
+        <version>4.4.9</version>
+  </parent>
+  
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.9.0</version>
+        <configuration>
+          <source>${project.java.version}</source>
+          <target>${project.java.version}</target>
+		  <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.3.0-SNAPSHOT</version>
+        <executions>
+            <execution>
+                <phase>package</phase>
+                <goals>
+                    <goal>shade</goal>
+                </goals>
+                
+                <configuration>
+				  <outputFile>../loader/src/superlobby-plugin.jarinjar</outputFile>
+                  <relocations>
+                    <relocation>
+                      <pattern>com.pedrojm96.core</pattern>
+                      <shadedPattern>com.pedrojm96.superlobby</shadedPattern>
+                    </relocation>
+					<relocation>
+                		<pattern>org.bstats</pattern>
+                		<shadedPattern>com.pedrojm96.superlobby.libs.org.bstats</shadedPattern>
+           			 </relocation>
+                  </relocations>
+                
+                
+                  <filters>
+                    <filter>
+                      <artifact>com.pedrojm96:CoreLibBukkit</artifact>
+                      <excludes>
+                        <exclude>com/pedrojm96/core/CoreEncryption*.class</exclude>
+						<exclude>com/pedrojm96/core/RabbitmqMessagingService*.class</exclude>
+                        <exclude>com/pedrojm96/core/CoreMaterial2*.class</exclude>
+                        <exclude>com/pedrojm96/core/effect/CoreBlockParticles*.class</exclude>
+                        <exclude>com/pedrojm96/core/effect/CoreParticleEffect*.class</exclude>
+                        <exclude>com/pedrojm96/core/effect/CoreServerPingInfo*.class</exclude>
+                        <exclude>com/pedrojm96/core/effect/CoreShowHidePlayer*.class</exclude>
+                        <exclude>com/pedrojm96/core/effect/CoreSound*.class</exclude>
+                        <exclude>com/pedrojm96/core/data/**</exclude>
+						<exclude>com/pedrojm96/core/command/event/**</exclude>
+                      </excludes>
+                    </filter>
+                  </filters>
+                </configuration>
+                
+            </execution>
+        </executions>
+        <configuration>
+            <shadedArtifactAttached>true</shadedArtifactAttached>
+            <shadedClassifierName>shaded</shadedClassifierName>
+        </configuration>
+      </plugin>
+      
+      
+    </plugins>
+  </build>
+  <pluginRepositories>
+    <pluginRepository>
+        <id>apache.snapshots</id>
+        <url>https://repository.apache.org/snapshots/</url>
+    </pluginRepository>
+ </pluginRepositories>
+
+    <repositories>
+	<!--Spigot API-->
+    <repository>
+        <id>spigot-repo</id>
+        <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+    <!--Vault-->
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+    <!--Placeholder API-->
+    <repository>
+        <id>placeholderapi</id>
+        <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+    </repository>
+	<!--PlayerPoints-->
+	<repository>
+        <id>rosewood-repo</id>
+        <url>https://repo.rosewooddev.io/repository/public/</url>
+    </repository>
+	<!--ProtocolLib-->
+    <repository>
+        <id>dmulloy2-repo</id>
+        <url>https://repo.dmulloy2.net/repository/public/</url>
+    </repository>
+	<!--ViaVersion-->
+	<repository>
+    	<id>viaversion-repo</id>
+    	<url>https://repo.viaversion.com</url>
+	</repository>
+
+  </repositories>
+
+  <dependencies>
+     <!--Spigot API-->
+     <dependency>
+       <groupId>org.spigotmc</groupId>
+       <artifactId>spigot-api</artifactId>
+       <version>1.19-R0.1-SNAPSHOT</version>
+       <scope>provided</scope>
+     </dependency>
+     <dependency>
+       <groupId>com.pedrojm96</groupId>
+       <artifactId>CoreLibBukkit</artifactId>
+       <version>[2.0.0,)</version>
+       <scope>compile</scope>
+     </dependency>
+     <!--Placeholder API-->
+     <dependency>
+       <groupId>me.clip</groupId>
+       <artifactId>placeholderapi</artifactId>
+       <version>2.10.9</version>
+       <scope>provided</scope>
+     </dependency>
+     <!--Vault-->
+     <dependency>
+       <groupId>com.github.MilkBowl</groupId>
+       <artifactId>VaultAPI</artifactId>
+       <version>1.7</version>
+       <scope>provided</scope>
+     </dependency>
+     <!--PlayerPoints-->
+	 <dependency>
+        <groupId>org.black_ixx</groupId>
+        <artifactId>playerpoints</artifactId>
+        <version>3.1.1</version>
+        <scope>provided</scope>
+      </dependency>
+	  <!--ProtocolLib-->
+	  <dependency>
+        <groupId>com.comphenix.protocol</groupId>
+        <artifactId>ProtocolLib</artifactId>
+        <version>4.7.0</version>
+ 		<scope>provided</scope>
+      </dependency>
+      <!--ViaVersion-->
+      <dependency>
+        <groupId>com.viaversion</groupId>
+        <artifactId>viaversion-api</artifactId>
+        <version>4.1.1</version>
+ 		<scope>provided</scope>
+      </dependency>
+	  <!--Metrics-->
+     <dependency>
+       <groupId>org.bstats</groupId>
+       <artifactId>bstats-bukkit</artifactId>
+       <version>3.0.0</version>
+       <scope>compile</scope>
+     </dependency>
+  </dependencies>
+</project>
