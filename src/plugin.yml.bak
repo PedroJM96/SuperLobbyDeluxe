@@ -1,7 +1,0 @@
-name: SuperLobby
-version: 4.4.7
-main: com.pedrojm96.superlobby.SuperLobby
-author: PedroJM96
-description: Customize many functions and features of the server lobby in a powerful and free for all.
-api-version: 1.13
-softdepend: [PlaceholderAPI,Vault,PlayerPoints,ViaVersion,ProtocolLib]
