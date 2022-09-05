@@ -6,14 +6,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
-import com.pedrojm96.core.CoreMaterial;
+import com.pedrojm96.core.CoreUtils;
 import com.pedrojm96.superlobby.SuperLobby;
 
 
@@ -180,9 +180,10 @@ public class EntityListener implements Listener{
 	 {
 		 if (plugin.config.getBoolean("farm-protect.enable")) {
 			 if (plugin.config.getStringList("farm-protect.world").contains(e.getEntity().getWorld().getName())) {
-				 if ((e.getEntityType() != EntityType.PLAYER) && (e.getBlock().getType() == CoreMaterial.pre113.SOIL.get())) {
+				 
+				 if ((e.getEntityType() != EntityType.PLAYER) && (CoreUtils.isMaterial(e.getBlock().getType(), "SOUL_SOIL","SOIL"))) {
 					 e.setCancelled(true);
-				 }
+				 }  
 			 } 
 		 }
 	 }

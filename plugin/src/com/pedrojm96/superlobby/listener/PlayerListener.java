@@ -10,10 +10,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Effect;
 import org.bukkit.FireworkEffect;
+import org.bukkit.FireworkEffect.Type;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.FireworkEffect.Type;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.ItemFrame;
@@ -42,7 +42,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import com.pedrojm96.core.CoreColor;
-import com.pedrojm96.core.CoreMaterial;
 import com.pedrojm96.core.CoreSpigotUpdater;
 import com.pedrojm96.core.CoreUtils;
 import com.pedrojm96.core.CoreVariables;
@@ -415,9 +414,23 @@ public class PlayerListener implements Listener{
 	 {
 		 if (plugin.config.getBoolean("farm-protect.enable")) {
 			 if (plugin.config.getStringList("farm-protect.world").contains(e.getPlayer().getWorld().getName())) {
-				 if ((e.getAction() == Action.PHYSICAL) && (e.getClickedBlock().getType() ==  CoreMaterial.pre113.SOIL.get())) {
-					 e.setCancelled(true);
+				 
+				 List<String> mates;
+				 if(CoreUtils.Version.getVersion().esMenorIgual(CoreUtils.Version.v1_12_x)) {
+					 mates = Arrays.asList("SOIL");
+				 }else {
+					 mates = Arrays.asList("SOUL_SOIL","LEGACY_SOIL");
 				 }
+				 
+				 for(String mate : mates) {
+					 if ((e.getAction() == Action.PHYSICAL) && (e.getClickedBlock().getType() ==  Material.valueOf(mate))) {
+						 e.setCancelled(true);
+					 }
+				 } 
+				 
+				 
+				 
+				 
 			 } 
 		 }
 	 } 
@@ -903,7 +916,7 @@ public class PlayerListener implements Listener{
 			 if ((plugin.config.getStringList("disable-dispenser-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					 if(e.getClickedBlock().getType() == CoreMaterial.pre113.DISPENSER.get()) {
+					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "DISPENSER")) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -933,7 +946,7 @@ public class PlayerListener implements Listener{
 		 if (plugin.config.getBoolean("disable-noteblock-interaction.enable")){
 			 if ((plugin.config.getStringList("disable-noteblock-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_BLOCK) {
-					 if(e.getClickedBlock().getType() == CoreMaterial.pre113.NOTE_BLOCK.get()) {
+					 if(e.getClickedBlock().getType() == Material.NOTE_BLOCK) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -963,28 +976,19 @@ public class PlayerListener implements Listener{
 		 if (plugin.config.getBoolean("disable-button-interaction.enable")){
 			 if ((plugin.config.getStringList("disable-button-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					 List<String> mates;
 					 
-					 if(CoreUtils.Version.getVersion().esMenorIgual(CoreUtils.Version.v1_12_x)) {
-						 mates = Arrays.asList("WOOD_BUTTON","STONE_BUTTON");
-					 }else {
-						 mates = Arrays.asList("ACACIA_BUTTON","BIRCH_BUTTON","DARK_OAK_BUTTON","JUNGLE_BUTTON","OAK_BUTTON","SPRUCE_BUTTON","STONE_BUTTON");
-					 }
 					 
-					 for(String mate : mates) {
-						 if(e.getClickedBlock().getType() == Material.valueOf(mate)) {
-							 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
+					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "ACACIA_BUTTON","BIRCH_BUTTON","DARK_OAK_BUTTON","JUNGLE_BUTTON","OAK_BUTTON","SPRUCE_BUTTON","STONE_BUTTON","WOOD_BUTTON","STONE_BUTTON")  ) {
+						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
+						 {
+							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
 							 {
-								 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
-								 {
-									 e.setCancelled(false);
-								 } else {
-									 e.setCancelled(true);
-								 }
+								 e.setCancelled(false);
 							 } else {
 								 e.setCancelled(true);
 							 }
-							 break;
+						 } else {
+							 e.setCancelled(true);
 						 }
 					 }
 				 }
@@ -1006,28 +1010,17 @@ public class PlayerListener implements Listener{
 			 if ((plugin.config.getStringList("disable-trapdoor-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 						
-					 List<String> mates;
-					 
-					 if(CoreUtils.Version.getVersion().esMenorIgual(CoreUtils.Version.v1_12_x)) {
-						 mates = Arrays.asList("IRON_TRAPDOOR","TRAP_DOOR");
-					 }else {
-						 mates = Arrays.asList("ACACIA_TRAPDOOR","BIRCH_TRAPDOOR","DARK_OAK_TRAPDOOR","IRON_TRAPDOOR","JUNGLE_TRAPDOOR","OAK_TRAPDOOR","SPRUCE_TRAPDOOR");
-					 }
-					 
-					 for(String mate : mates) {
-						 if(e.getClickedBlock().getType() == Material.valueOf(mate)) {
-							 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
+					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "ACACIA_TRAPDOOR","BIRCH_TRAPDOOR","DARK_OAK_TRAPDOOR","IRON_TRAPDOOR","JUNGLE_TRAPDOOR","OAK_TRAPDOOR","SPRUCE_TRAPDOOR","TRAP_DOOR")) {
+						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
+						 {
+							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
 							 {
-								 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
-								 {
-									 e.setCancelled(false);
-								 } else {
-									 e.setCancelled(true);
-								 }
+								 e.setCancelled(false);
 							 } else {
 								 e.setCancelled(true);
 							 }
-							 break;
+						 } else {
+							 e.setCancelled(true);
 						 }
 					 }
 				 }
@@ -1048,7 +1041,7 @@ public class PlayerListener implements Listener{
 		 if (plugin.config.getBoolean("disable-fence-gate-interaction.enable")){
 			 if ((plugin.config.getStringList("disable-fence-gate-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					 if(e.getClickedBlock().getType() == CoreMaterial.pre113.ACACIA_FENCE_GATE.get()|| e.getClickedBlock().getType() == CoreMaterial.pre113.BIRCH_FENCE_GATE.get()|| e.getClickedBlock().getType() == CoreMaterial.pre113.DARK_OAK_FENCE_GATE.get()|| e.getClickedBlock().getType() == CoreMaterial.pre113.JUNGLE_FENCE_GATE.get()|| e.getClickedBlock().getType() == CoreMaterial.pre113.FENCE_GATE.get()|| e.getClickedBlock().getType() == CoreMaterial.pre113.SPRUCE_FENCE_GATE.get() ) {
+					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "ACACIA_FENCE_GATE","BIRCH_FENCE_GATE","DARK_OAK_FENCE_GATE","JUNGLE_FENCE_GATE","FENCE_GATE","OAK_FENCE_GATE","SPRUCE_FENCE_GATE") ) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -1078,7 +1071,7 @@ public class PlayerListener implements Listener{
 		 if (plugin.config.getBoolean("disable-hopper-interaction.enable")){
 			 if ((plugin.config.getStringList("disable-hopper-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					 if(e.getClickedBlock().getType() == CoreMaterial.pre113.HOPPER.get()|| e.getClickedBlock().getType() == CoreMaterial.pre113.HOPPER_MINECART.get() ) {
+					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "HOPPER","HOPPER_MINECART") ) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -1112,7 +1105,7 @@ public class PlayerListener implements Listener{
 			 if ((plugin.config.getStringList("disable-dropper-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					 if(e.getClickedBlock().getType() == CoreMaterial.pre113.DROPPER.get()) {
+					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "DROPPER")) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -1145,7 +1138,7 @@ public class PlayerListener implements Listener{
 			 if ((plugin.config.getStringList("disable-daylight-sensor-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					 if(e.getClickedBlock().getType() == CoreMaterial.pre113.DAYLIGHT_DETECTOR.get() || e.getClickedBlock().getType() == CoreMaterial.pre113.DAYLIGHT_DETECTOR_INVERTED.get()) {
+					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "DAYLIGHT_DETECTOR","DAYLIGHT_DETECTOR_INVERTED","LEGACY_DAYLIGHT_DETECTOR_INVERTED")) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -1209,36 +1202,19 @@ public class PlayerListener implements Listener{
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 
-					 List<String> mates;
-					 
-					 CoreUtils.Version.getVersion().esMenorIgual(CoreUtils.Version.v1_12_x);
-					 
-					 if(CoreUtils.Version.getVersion().esMayorIgual(CoreUtils.Version.v1_16)) {
-						 mates = Arrays.asList("ACACIA_DOOR","BIRCH_DOOR","CRIMSON_DOOR","WARPED_DOOR","DARK_OAK_DOOR","IRON_DOOR","JUNGLE_DOOR","OAK_DOOR","SPRUCE_DOOR");
-					 }else if(CoreUtils.Version.getVersion().esMayorIgual(CoreUtils.Version.v1_13)){
-						 mates = Arrays.asList("ACACIA_DOOR","BIRCH_DOOR","DARK_OAK_DOOR","IRON_DOOR","JUNGLE_DOOR","OAK_DOOR","SPRUCE_DOOR");
-					 }else {
-						 //1.8.8
-						 mates = Arrays.asList("ACACIA_DOOR","BIRCH_DOOR","DARK_OAK_DOOR","IRON_DOOR","JUNGLE_DOOR","SPRUCE_DOOR","WOOD_DOOR","WOODEN_DOOR");
-					 }
-					 
-					 for(String mate : mates) {
-						 if(e.getClickedBlock().getType() == Material.valueOf(mate)) {
-							 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
+					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "ACACIA_DOOR","BIRCH_DOOR","DARK_OAK_DOOR","IRON_DOOR","JUNGLE_DOOR","OAK_DOOR","SPRUCE_DOOR","WOOD_DOOR","WOODEN_DOOR","CRIMSON_DOOR","WARPED_DOOR")) {
+						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
+						 {
+							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
 							 {
-								 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
-								 {
-									 e.setCancelled(false);
-								 } else {
-									 e.setCancelled(true);
-								 }
+								 e.setCancelled(false);
 							 } else {
 								 e.setCancelled(true);
 							 }
-							 break;
+						 } else {
+							 e.setCancelled(true);
 						 }
-					 }
-					 
+					 } 
 				 }
 			 }
 		 }
