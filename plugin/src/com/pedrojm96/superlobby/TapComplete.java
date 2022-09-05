@@ -40,7 +40,7 @@ public class TapComplete {
 					@Override
 					@EventHandler(priority = EventPriority.HIGHEST)
 				    public void onPacketSending(PacketEvent event) {
-				        // Item packets (id: 0x29)
+				       
 							superlobby.log.debug(event.getPacket().toString());
 				            
 				        	if(blocktab.contains(event.getPlayer().getName()) &&  !event.getPlayer().hasPermission(superlobby.config.getString("disable-tab-complete.bypass"))) {
@@ -77,7 +77,7 @@ public class TapComplete {
 					@Override
 					@EventHandler(priority = EventPriority.HIGHEST)
 				    public void onPacketReceiving(PacketEvent event) {
-				        // Item packets (id: 0x29)
+				      
 				      
 				            
 							superlobby.log.debug(event.getPacket().toString());

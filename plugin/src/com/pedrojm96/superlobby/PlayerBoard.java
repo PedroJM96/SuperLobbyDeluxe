@@ -62,9 +62,7 @@ public class PlayerBoard {
 		 for(String nodo : config.getKeys(false)){
 			 Team team = this.get().registerNewTeam("slt-" + linePosition);
 			 team.addEntry(listaColores.get(precolor));
-			 //team.addPlayer(new FastOfflinePlayer(String.valueOf(org.bukkit.ChatColor.values()[index])));
 			 this.getObjective().getScore(listaColores.get(precolor)).setScore(linePosition); 
-			 //board.getObjective().getScore(new FastOfflinePlayer(String.valueOf(org.bukkit.ChatColor.values()[index]))).setScore(index); 
 			 BoardLine line = new BoardLine(player,team,config.getStringList(nodo+".content"),config.getInt(nodo+".update"));
 			 this.add(line);
 			 linePosition--;

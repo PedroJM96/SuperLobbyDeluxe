@@ -965,7 +965,7 @@ public class PlayerListener implements Listener{
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 List<String> mates;
 					 
-					 if(CoreUtils.mc1_7||CoreUtils.mc1_8||CoreUtils.mc1_9||CoreUtils.mc1_10||CoreUtils.mc1_11||CoreUtils.mc1_12) {
+					 if(CoreUtils.Version.getVersion().esMenorIgual(CoreUtils.Version.v1_12_x)) {
 						 mates = Arrays.asList("WOOD_BUTTON","STONE_BUTTON");
 					 }else {
 						 mates = Arrays.asList("ACACIA_BUTTON","BIRCH_BUTTON","DARK_OAK_BUTTON","JUNGLE_BUTTON","OAK_BUTTON","SPRUCE_BUTTON","STONE_BUTTON");
@@ -1008,7 +1008,7 @@ public class PlayerListener implements Listener{
 						
 					 List<String> mates;
 					 
-					 if(CoreUtils.mc1_7||CoreUtils.mc1_8||CoreUtils.mc1_9||CoreUtils.mc1_10||CoreUtils.mc1_11||CoreUtils.mc1_12) {
+					 if(CoreUtils.Version.getVersion().esMenorIgual(CoreUtils.Version.v1_12_x)) {
 						 mates = Arrays.asList("IRON_TRAPDOOR","TRAP_DOOR");
 					 }else {
 						 mates = Arrays.asList("ACACIA_TRAPDOOR","BIRCH_TRAPDOOR","DARK_OAK_TRAPDOOR","IRON_TRAPDOOR","JUNGLE_TRAPDOOR","OAK_TRAPDOOR","SPRUCE_TRAPDOOR");

@@ -111,7 +111,6 @@ public class SuperLobby implements CoreLoader{
         this.instance = loader.getInstance();
         this.log = loader.getLog();
         this.classPathAppender = new CoreURLClassLoader(getClass().getClassLoader());
-        //this.classPathAppender = new JarInJarClassPathAppender(getClass().getClassLoader());
     }
 	
 	
@@ -144,9 +143,7 @@ public class SuperLobby implements CoreLoader{
 		 } 
 	 }
 	 
-	 
-	 
-	 
+
 	public void onEnable() {
 		plugin = this;
 		this.log = this.loader.getLog();
@@ -224,11 +221,7 @@ public class SuperLobby implements CoreLoader{
 		mainCommand.addSubCommand(Arrays.asList("reload"), new ReloadCMD(this));
 		mainCommand.addSubCommand(Arrays.asList("help","?"), new HelpCMD(this));
 		mainCommand.addSubCommand(Arrays.asList("openmenu"), new OpenMenuCMD(this));
-
-	
-		
 		CoreCommands.registerCommand(mainCommand, this.loader);
-		//this.getCommand("superlobby").setExecutor(mainCommand);
 		
 		/******************************************************************************************************************
 		 *                                          Registro de eventos                                                   *
@@ -549,7 +542,7 @@ public class SuperLobby implements CoreLoader{
 			else 
 			{
 				String mate_data;
-				if(CoreUtils.isPre1_13()) {
+				if(CoreUtils.Version.getVersion().esMenorIgual(CoreUtils.Version.v1_12_x)) {
 					if(nodo.isSet("material-old")) {
 						mate_data = nodo.getString("material-old");
 					}else {
@@ -648,7 +641,7 @@ public class SuperLobby implements CoreLoader{
 			}
 			
 			if (a.isSet("join-sound-old")){
-				if(!Utils.isEnum(Sound.class, a.getString("join-sound-old").toUpperCase()) && !a.getString("join-sound-old").equalsIgnoreCase("random")) {
+				if(!CoreUtils.isEnum(Sound.class, a.getString("join-sound-old").toUpperCase()) && !a.getString("join-sound-old").equalsIgnoreCase("random")) {
 					if (a.isSet("join-sound")) {
 						cj.setJoinSound(a.getString("join-sound"));
 					}

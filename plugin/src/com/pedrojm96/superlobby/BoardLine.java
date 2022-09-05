@@ -33,16 +33,9 @@ public class BoardLine {
 		Iterator<String> iterator = Splitter.fixedLength(16).split(s).iterator();
 		String iterador = iterator.next();
 		String prefix = iterador;
-		
-		
-		//team.setPrefix(iterador);
+
 		if (s.length() > 16){
 			String suffix = iterator.next();
-			
-			
-			//p.sendMessage("Sin formato: "+"["+prefix.replaceAll("§", "&")+":"+prefix.length()+"]"+"["+suffix.replaceAll("§", "&")+":"+suffix.length()+"]");
-		
-			//String prefix = team.getPrefix();
 			
 			char c1 = prefix.charAt(prefix.length()-1);
 			char c2 = suffix.charAt(0);
@@ -51,16 +44,12 @@ public class BoardLine {
 		    {
 		    	
 		    	prefix =prefix.substring(0, prefix.length()-1);
-		        //team.setPrefix(team.getPrefix().substring(0, prefix.length()-1));
 		    	suffix= c1 + suffix;
 		    	ultimo = true;
-		    	//p.sendMessage("Remover ultimo §: "+"["+prefix.replaceAll("§", "&")+":"+prefix.length()+"]"+"["+suffix.replaceAll("§", "&")+":"+suffix.length()+"]");
 		    }
 
 		    String finalcolor = "";
-		   
 		    boolean formate = false;
-		    
 		    for(int i = (prefix.length()-1) ; i>=0;i-=2) {
 		    	for(String color : CoreColor.getNativeColorList()) {
 			    	if(prefix.endsWith(color)) {
@@ -71,17 +60,13 @@ public class BoardLine {
 			    }
 		    }
 		    
-
 		    if(formate) {
 		    	
 		    	suffix = finalcolor.trim() + suffix;
 		    	
 		    	if(suffix.length()>16) {
 		    		suffix = suffix.substring(0, 15);
-		    	}
-		    	
-		    	//p.sendMessage("Formato limpio: "+"["+prefix.replaceAll("§", "&")+":"+prefix.length()+"]"+"["+suffix.replaceAll("§", "&")+":"+suffix.length()+"]");
-		    
+		    	}	
 		    }else if(!ultimo){
 		    	String str1 = "";
 			    if(!ChatColor.getLastColors(prefix).equals("")) {
@@ -90,26 +75,8 @@ public class BoardLine {
 			     
 			    if ((suffix = str1 + suffix).length() > 16) {
 			    	suffix = suffix.substring(0, 15);
-			    }
-			    
-			   // p.sendMessage("Ultimo color: "+"["+prefix.replaceAll("§", "&")+":"+prefix.length()+"]"+"["+suffix.replaceAll("§", "&")+":"+suffix.length()+"]");
+			    } 
 		    }
-		    
-		    
-		    
-		    
-			/**String last = "";
-			for (int i = 0; i < s.substring(0, 16).length(); i++)
-	        {
-	            char c = s.charAt(i);
-	            if (c == '§') {
-	                last = last + "§" + s.charAt(i + 1);
-	            }
-	         }
-	        String sufi = iterator.next();
-	        if((last.length() + sufi.length())>16){
-	        	sufi = sufi.substring(0, sufi.length()-last.length());
-	        }**/
 		    team.setPrefix(prefix);
 	        team.setSuffix(suffix);
 	        

@@ -1,5 +1,5 @@
 name: SuperLobby
-version: 4.4.9
+version: 4.5.0
 main: com.pedrojm96.superlobby.SuperLobbyLoader
 
 api-version: 1.13

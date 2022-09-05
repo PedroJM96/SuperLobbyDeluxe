@@ -34,9 +34,6 @@ public class BossbarAnnouncerRun extends BukkitRunnable{
 			 String bc = plugin.configAnnouncer.getString("bossbar.list."+nodo+".color");
 			 String bs = plugin.configAnnouncer.getString("bossbar.list."+nodo+".style");
 			 int time = plugin.configAnnouncer.getInt("bossbar.list."+nodo+".seconds");
-			
-			 //new BossBar1(p,mesage,bc,bs,time);	 
-			 
 			 CoreBossBar.sendBossBar(p, mesage, bc, bs, time<1?1:time,plugin.getInstance());
 		}
 		if(bossbarc>=(nodoALL.size() - 1)){
