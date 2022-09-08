@@ -1,7 +1,6 @@
 package com.pedrojm96.superlobby.listener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -415,21 +414,9 @@ public class PlayerListener implements Listener{
 		 if (plugin.config.getBoolean("farm-protect.enable")) {
 			 if (plugin.config.getStringList("farm-protect.world").contains(e.getPlayer().getWorld().getName())) {
 				 
-				 List<String> mates;
-				 if(CoreUtils.Version.getVersion().esMenorIgual(CoreUtils.Version.v1_12_x)) {
-					 mates = Arrays.asList("SOIL");
-				 }else {
-					 mates = Arrays.asList("SOUL_SOIL","LEGACY_SOIL");
-				 }
-				 
-				 for(String mate : mates) {
-					 if ((e.getAction() == Action.PHYSICAL) && (e.getClickedBlock().getType() ==  Material.valueOf(mate))) {
-						 e.setCancelled(true);
-					 }
-				 } 
-				 
-				 
-				 
+				 if ((e.getAction() == Action.PHYSICAL) && (CoreUtils.isMaterial(e.getClickedBlock().getType(),"SOIL","SOUL_SOIL","LEGACY_SOIL"))) {
+					 e.setCancelled(true);
+				 }	 
 				 
 			 } 
 		 }
@@ -579,8 +566,8 @@ public class PlayerListener implements Listener{
 		 if(plugin.configChat.getBoolean("chat-format.enable")){
 			 Player player = e.getPlayer();
 			 if(!player.hasPermission("superLobby.chat.magic")){
-				 if(e.getMessage().contains("&k") || e.getMessage().contains("�k")){
-					 e.getMessage().replaceAll("&k", "").replaceAll("�k", "");
+				 if(e.getMessage().contains("&k") || e.getMessage().contains("§k")){
+					 e.getMessage().replaceAll("&k", "").replaceAll("§k", "");
 				 }
 			  }
 			  if (player.hasPermission("superLobby.chat.color")) {

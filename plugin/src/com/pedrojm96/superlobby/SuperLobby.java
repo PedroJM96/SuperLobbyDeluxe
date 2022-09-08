@@ -36,6 +36,7 @@ import com.pedrojm96.core.CorePlugin;
 import com.pedrojm96.core.CoreSpigotUpdater;
 import com.pedrojm96.core.CoreUtils;
 import com.pedrojm96.core.CoreVariables;
+import com.pedrojm96.core.CoreVersion;
 import com.pedrojm96.core.CoreViaVersion;
 import com.pedrojm96.core.command.CoreCommands;
 import com.pedrojm96.core.command.CoreExecuteComands;
@@ -257,7 +258,7 @@ public class SuperLobby implements CoreLoader{
 		
 		if(config.getBoolean("disable-tab-complete.enable")) {
 			
-			if(CoreUtils.Version.getVersion().esMenor(CoreUtils.Version.v1_13)) {
+			if(CoreVersion.getVersion().esMenor(CoreVersion.v1_13)) {
 				if(setupProtocolLib()) {
 					log.alert("Hooked ProtocolLib");
 					TapComplete tab = new TapComplete(this);
@@ -542,7 +543,7 @@ public class SuperLobby implements CoreLoader{
 			else 
 			{
 				String mate_data;
-				if(CoreUtils.Version.getVersion().esMenorIgual(CoreUtils.Version.v1_12_x)) {
+				if(CoreVersion.getVersion().esMenorIgual(CoreVersion.v1_12_x)) {
 					if(nodo.isSet("material-old")) {
 						mate_data = nodo.getString("material-old");
 					}else {
