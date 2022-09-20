@@ -29,7 +29,7 @@ public class BlockListener implements Listener{
 	@EventHandler 
 	public void onBlockBreak(BlockBreakEvent e){
 		if (plugin.config.getBoolean("disable-block-break.enable")){
-			if ((plugin.config.getStringList("disable-block-break.world").contains(e.getBlock().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getBlock().getLocation(), "disable-block-break")) &&(!e.isCancelled())) 
 			{
 				if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 				{
@@ -57,7 +57,7 @@ public class BlockListener implements Listener{
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e) {
 		if (plugin.config.getBoolean("disable-block-place.enable")){
-			if ((plugin.config.getStringList("disable-block-place.world").contains(e.getBlock().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getBlock().getLocation(), "disable-block-place")) && (!e.isCancelled())) 
 			{
 				if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 				{
@@ -84,7 +84,7 @@ public class BlockListener implements Listener{
 	@EventHandler
 	public void onBlockFire(BlockBurnEvent e){
 		if (plugin.config.getBoolean("disable-block-burn.enable")){
-			if ((plugin.config.getStringList("disable-block-burn.world").contains(e.getBlock().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getBlock().getLocation(), "disable-block-burn")) && (!e.isCancelled())) 
 			{
 				
 				e.setCancelled(true); 
@@ -102,7 +102,7 @@ public class BlockListener implements Listener{
 	@EventHandler
 	public void onBlockIgnite(BlockIgniteEvent e){
 		if (plugin.config.getBoolean("disable-block-burn.enable")){
-			if ((plugin.config.getStringList("disable-block-burn.world").contains(e.getBlock().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getBlock().getLocation(), "disable-block-burn")) && (!e.isCancelled())) 
 			{
 				e.setCancelled(true); 
 			}

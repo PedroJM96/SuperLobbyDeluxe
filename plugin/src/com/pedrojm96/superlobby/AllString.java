@@ -31,6 +31,8 @@ public class AllString {
 	public static String help_description_remSpawn;
 	public static String help_command_openmenu;
 	public static String help_description_openmenu;
+	public static String use_command_setspawn_radius;
+	public static String error_command_setspawn_radius;
 	
 	
 	public static void load(CoreConfig config,CoreConfig messages) {
@@ -61,5 +63,7 @@ public class AllString {
 		help_description_remSpawn = messages.getString("help-description-remSpawn");
 		help_command_openmenu = messages.getString("help-command-openmenu");
 		help_description_openmenu = messages.getString("help-description-openmenu");
+		use_command_setspawn_radius = messages.getString("use-command-setspawn-radius");
+		error_command_setspawn_radius = messages.getString("error-command-setspawn-radius");
 	}
 }

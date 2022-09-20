@@ -51,6 +51,7 @@ menu: true
 #Deactivate the player's interaction with the daylight sensor.
 disable-daylight-sensor-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -59,6 +60,7 @@ disable-daylight-sensor-interaction:
 #Deactivate the player's interaction with the dropper.
 disable-dropper-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -66,6 +68,7 @@ disable-dropper-interaction:
 #Deactivate the player's interaction with the hopper.
 disable-hopper-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -73,6 +76,7 @@ disable-hopper-interaction:
 #Deactivate the player's interaction with the fence gate.
 disable-fence-gate-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -80,6 +84,7 @@ disable-fence-gate-interaction:
 #Deactivate the player's interaction with the trapdoor.
 disable-trapdoor-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -87,6 +92,7 @@ disable-trapdoor-interaction:
 #Deactivate the player's interaction with the button.
 disable-button-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -94,6 +100,7 @@ disable-button-interaction:
 #Deactivate the player's interaction with the dispenser.
 disable-dispenser-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -101,6 +108,7 @@ disable-dispenser-interaction:
 #Disable interaction with the musical blocks.
 disable-noteblock-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -108,6 +116,7 @@ disable-noteblock-interaction:
 #Disable interaction with the Armor Stands.
 disable-armorstands-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -115,6 +124,7 @@ disable-armorstands-interaction:
 #Deactivate the player's interaction with the door.
 disable-door-interaction:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -122,6 +132,7 @@ disable-door-interaction:
 #To deactivate the rain.
 disable-rain:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -129,6 +140,7 @@ disable-rain:
 #To deactivate the blocks break.
 disable-block-break:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -136,6 +148,7 @@ disable-block-break:
 #To deactivate that they place blocks.
 disable-block-place:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -143,6 +156,7 @@ disable-block-place:
 #To deactivate that the blocks burn.
 disable-block-burn:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -150,6 +164,7 @@ disable-block-burn:
 #To deactivate if the player can throw item.
 disable-drop-item:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -157,6 +172,7 @@ disable-drop-item:
 #To deactivate if the player can move item in the inventory.
 disable-item-move:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -164,6 +180,7 @@ disable-item-move:
 #To deactivate that the items do damage.
 disable-item-damage:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -171,6 +188,7 @@ disable-item-damage:
 #To deactivate if the player can collect item.
 disable-pick-up-items:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -178,6 +196,7 @@ disable-pick-up-items:
 #To deactivate entity explosions.
 disable-entity-explode:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -185,6 +204,7 @@ disable-entity-explode:
 #To deactivate the damage.
 disable-damage:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -192,6 +212,7 @@ disable-damage:
 #To deactivate hunger in the players.
 disable-hunger:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -199,6 +220,7 @@ disable-hunger:
 #To deactivate the players' death messages.
 disable-death-message:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -206,6 +228,7 @@ disable-death-message:
 #To deactivate monsters and animals appear.
 disable-creature-spawn:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -213,6 +236,7 @@ disable-creature-spawn:
 #To clean the items left by the player when he dies.
 clear-drops-on-death:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -223,6 +247,7 @@ lobby-items:
   join-server: true
   respawn: true
   join-world: true
+  use-spawn-radius: false
   world:
   - 'lobby'
 
@@ -249,12 +274,14 @@ always-night:
 #To protect the frames.
 frame-protect:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
 #To protect the farm.
 farm-protect:
   enable: true
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'
@@ -265,6 +292,7 @@ jump-pads:
   plate-block-old: 'GOLD_PLATE'
   sound: 'BLOCK_PISTON_EXTEND'
   sound-old: 'PISTON_EXTEND'
+  use-spawn-radius: false
   world:
   - 'lobby'
   - 'auth'

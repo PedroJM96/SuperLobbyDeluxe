@@ -62,6 +62,7 @@ import com.pedrojm96.superlobby.subcommand.ReloadCMD;
 import com.pedrojm96.superlobby.subcommand.RemSpawnCMD;
 import com.pedrojm96.superlobby.subcommand.SetSpawnCMD;
 import com.pedrojm96.superlobby.subcommand.SetSpawnPermissionCMD;
+import com.pedrojm96.superlobby.subcommand.SetSpawnRadiusCMD;
 
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -218,6 +219,7 @@ public class SuperLobby implements CoreLoader{
 		SuperLobbyCMD mainCommand = new SuperLobbyCMD(this);
 		mainCommand.addSubCommand(Arrays.asList("setspawn"), new SetSpawnCMD(this));
 		mainCommand.addSubCommand(Arrays.asList("setspawnpermission"), new SetSpawnPermissionCMD(this));
+		mainCommand.addSubCommand(Arrays.asList("setspawnradius"), new SetSpawnRadiusCMD(this));
 		mainCommand.addSubCommand(Arrays.asList("remspawn"), new RemSpawnCMD(this));
 		mainCommand.addSubCommand(Arrays.asList("reload"), new ReloadCMD(this));
 		mainCommand.addSubCommand(Arrays.asList("help","?"), new HelpCMD(this));
@@ -407,13 +409,16 @@ public class SuperLobby implements CoreLoader{
 					 double z = configSpawn.getDouble(s+".z");
 					 int yaw = configSpawn.getInt(s+".yaw");
 					 int pi = configSpawn.getInt(s+".pi");
-					 
+					 Spawn spawn = new Spawn(new Location(w,x,y,z,yaw,pi));
+					 if(configSpawn.contains(s+".protection-radius")) {
+						 spawn.setProtection_radius(configSpawn.getInt(s+".protection-radius"));
+					 }
 					 if(spawnss.containsKey(perm)) {
-						 spawnss.get(perm).add(new Location(w,x,y,z,yaw,pi));
+						 spawnss.get(perm).add(spawn);
 					 }else {
-						 Spawns spawn = new Spawns();
-						 spawn.add(new Location(w,x,y,z,yaw,pi));
-						 spawnss.put(perm, spawn);
+						 Spawns spawns = new Spawns();
+						 spawns.add(spawn);
+						 spawnss.put(perm, spawns);
 					 }
 				 }else {
 					 World w = this.instance.getServer().getWorld(configSpawn.getString(s+".world"));
@@ -422,12 +427,16 @@ public class SuperLobby implements CoreLoader{
 					 double z = configSpawn.getDouble(s+".z");
 					 int yaw = configSpawn.getInt(s+".yaw");
 					 int pi = configSpawn.getInt(s+".pi");
+					 Spawn spawn = new Spawn(new Location(w,x,y,z,yaw,pi));
+					 if(configSpawn.contains(s+".protection-radius")) {
+						 spawn.setProtection_radius(configSpawn.getInt(s+".protection-radius"));
+					 }
 					 if(spawnss.containsKey("none")) {
-						 spawnss.get("none").add(new Location(w,x,y,z,yaw,pi));
+						 spawnss.get("none").add(spawn);
 					 }else {
-						 Spawns spawn = new Spawns();
-						 spawn.add(new Location(w,x,y,z,yaw,pi));
-						 spawnss.put("none", spawn);
+						 Spawns spawns = new Spawns();
+						 spawns.add(spawn);
+						 spawnss.put("none", spawns);
 					 }
 				 }
 			}
@@ -772,6 +781,36 @@ public class SuperLobby implements CoreLoader{
 		}
 	}
 	
+	
+	public boolean isWorldRadius(Location check,String path) {
+		if(plugin.config.getBoolean(path+".use-spawn-radius")) {
+			return this.isInSpawnRadius(check);
+		}
+		return (plugin.config.getStringList(path+".world").contains(check.getWorld().getName()));
+		
+	}
+	
+	
+	public  boolean isInSpawnRadius(Location check) {
+		
+		for(Spawns spawns : spawnss.values()) {
+			for(Spawn spawn : spawns.spawns) {
+				if(isInRadius(check,spawn.getLocation(),spawn.getProtection_radius())) {
+					return true;
+				}else {
+					continue;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static boolean isInRadius(Location check, Location start, double radius) {
+		if(radius<=0) {
+			return false;
+		}
+	    return Math.abs(check.getX() - start.getX()) <= radius && Math.abs(check.getY() - start.getY()) <= radius && Math.abs(check.getZ() - start.getZ()) <= radius;
+	}
 
 	public CoreLog getLog() {
 		// TODO Auto-generated method stub

@@ -25,3 +25,6 @@ error-no-online: "&7Игрок сейчас не онлайн."
 use-command-openmenu: '&c/superlobby &aopenmenu &3<playername> <menuname>.'
 help-command-openmenu: '&7[&6&l>&7] &a/superlobby openmenu <playername> <menuname>'
 help-description-openmenu: '&7[&6&l-&7] &7Открывает выбранное меню GUI для игрока.'
+
+use-command-setspawn-radius: '&7Invalid argument. &7Use &e/superlobby &asetspawnradius &3<name> <radius>.'
+error-command-setspawn-radius: "&8<radius> &7must be a numeric data."

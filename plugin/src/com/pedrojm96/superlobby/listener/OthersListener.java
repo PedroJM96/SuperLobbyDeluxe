@@ -58,7 +58,7 @@ public class OthersListener implements Listener{
 	@EventHandler (priority= EventPriority.HIGHEST)
 	public void onItemMove(InventoryClickEvent e) {
 		if (plugin.config.getBoolean("disable-item-move.enable")){
-			if ((plugin.config.getStringList("disable-item-move.world").contains(e.getWhoClicked().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getWhoClicked().getLocation(), "disable-item-move")) && (!e.isCancelled())) 
 			{
 				if ((e.getWhoClicked().isOp()) || (e.getWhoClicked().hasPermission("superlobby.staff")))
 				{
@@ -90,7 +90,7 @@ public class OthersListener implements Listener{
 		 }
 		 if (plugin.config.getBoolean("frame-protect.enable")){
 			 if (e.getRemover() instanceof Player) {
-				 if (plugin.config.getStringList("frame-protect.world").contains(e.getRemover().getWorld().getName())) {
+				 if (plugin.isWorldRadius(e.getRemover().getLocation(), "frame-protect")) {
 					 if ((e.getRemover().isOp()) || (e.getRemover().hasPermission("superlobby.staff")))
 					 {
 						 if (((HumanEntity) e.getRemover()).getGameMode() == GameMode.CREATIVE) 
@@ -121,7 +121,7 @@ public class OthersListener implements Listener{
 			 return;
 		 }
 		 if (plugin.config.getBoolean("frame-protect.enable")){
-			 if (plugin.config.getStringList("frame-protect.world").contains(e.getPlayer().getWorld().getName())) {
+			 if (plugin.isWorldRadius(e.getPlayer().getLocation(), "frame-protect")) {
 				 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 				 {
 					 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 

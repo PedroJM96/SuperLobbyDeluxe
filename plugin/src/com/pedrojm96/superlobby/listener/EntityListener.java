@@ -36,7 +36,7 @@ public class EntityListener implements Listener{
 	public void onItemDamage(EntityDamageEvent  e){
 		if (e.getEntity() instanceof org.bukkit.entity.Item) {
 			if (plugin.config.getBoolean("disable-item-damage.enable")){
-				if ((plugin.config.getStringList("disable-item-damage.world").contains(e.getEntity().getWorld().getName())) && (!e.isCancelled())) 
+				if ((plugin.isWorldRadius(e.getEntity().getLocation(), "disable-item-damage")) && (!e.isCancelled())) 
 				{
 					e.setCancelled(true); 
 				}
@@ -54,7 +54,7 @@ public class EntityListener implements Listener{
 	@EventHandler(priority=EventPriority.HIGH)
 	public void onEntityExplode(EntityExplodeEvent e){
 		if (plugin.config.getBoolean("disable-entity-explode.enable")){
-			if ((plugin.config.getStringList("disable-entity-explode.world").contains(e.getEntity().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getEntity().getLocation(), "disable-entity-explode")) && (!e.isCancelled())) 
 			{
 				e.setCancelled(true); 
 			}
@@ -75,7 +75,7 @@ public class EntityListener implements Listener{
 	      return;
 	    }
 	    if (plugin.config.getBoolean("disable-damage.enable")){
-			if ((plugin.config.getStringList("disable-damage.world").contains(e.getEntity().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getEntity().getLocation(), "disable-damage")) && (!e.isCancelled())) 
 			{
 				e.setCancelled(true); 
 				((Player) e.getEntity()).setHealth(20);
@@ -97,7 +97,7 @@ public class EntityListener implements Listener{
 			return;
 		}
 		if (plugin.config.getBoolean("disable-hunger.enable")){
-			if ((plugin.config.getStringList("disable-hunger.world").contains(e.getEntity().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getEntity().getLocation(), "disable-hunger")) && (!e.isCancelled())) 
 			{
 				e.setCancelled(true); 
 				((Player) e.getEntity()).setFoodLevel(20);
@@ -116,7 +116,7 @@ public class EntityListener implements Listener{
 	public void onPlayerDeathMessage(PlayerDeathEvent e)
 	{
 		if (plugin.config.getBoolean("disable-death-message.enable")){
-			if (plugin.config.getStringList("disable-death-message.world").contains(e.getEntity().getWorld().getName())) 
+			if (plugin.isWorldRadius(e.getEntity().getLocation(), "disable-death-message")) 
 			{
 				e.setDeathMessage(null);
 			}
@@ -143,7 +143,7 @@ public class EntityListener implements Listener{
 			return;
 		}
 		if (plugin.config.getBoolean("disable-creature-spawn.enable")){
-			if (plugin.config.getStringList("disable-creature-spawn.world").contains(e.getEntity().getWorld().getName())) 
+			if (plugin.isWorldRadius(e.getEntity().getLocation(), "disable-creature-spawn")) 
 			{
 				 e.setCancelled(true);
 			}
@@ -161,7 +161,7 @@ public class EntityListener implements Listener{
 	public void onPlayerDeathDrops(PlayerDeathEvent e)
 	{
 		if (plugin.config.getBoolean("clear-drops-on-death.enable")){
-			if (plugin.config.getStringList("clear-drops-on-death.world").contains(e.getEntity().getWorld().getName())) 
+			if (plugin.isWorldRadius(e.getEntity().getLocation(), "clear-drops-on-death")) 
 			{
 				e.getDrops().clear();
 			}
@@ -179,7 +179,7 @@ public class EntityListener implements Listener{
 	 public void soilChangeEntity(EntityInteractEvent e)
 	 {
 		 if (plugin.config.getBoolean("farm-protect.enable")) {
-			 if (plugin.config.getStringList("farm-protect.world").contains(e.getEntity().getWorld().getName())) {
+			 if (plugin.isWorldRadius(e.getEntity().getLocation(), "farm-protect")) {
 				 
 				 if ((e.getEntityType() != EntityType.PLAYER) && (CoreUtils.isMaterial(e.getBlock().getType(), "SOUL_SOIL","SOIL"))) {
 					 e.setCancelled(true);

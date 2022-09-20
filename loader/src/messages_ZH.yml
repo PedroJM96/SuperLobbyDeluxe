@@ -25,3 +25,6 @@ error-no-online: "&7该播放器当前未在线。"
 use-command-openmenu: '&7参数错误。 &7使用 &e/superlobby &aopenmenu &3<playername> <menuname>.'
 help-command-openmenu: '&7[&6&l>&7] &a/superlobby openmenu <playername> <menuname>'
 help-description-openmenu: '&7[&6&l-&7] &7打开选定的菜单GUI播放器。'
+
+use-command-setspawn-radius: '&7Invalid argument. &7Use &e/superlobby &asetspawnradius &3<name> <radius>.'
+error-command-setspawn-radius: "&8<radius> &7must be a numeric data."

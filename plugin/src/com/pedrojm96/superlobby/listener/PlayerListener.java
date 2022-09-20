@@ -81,7 +81,7 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	public void onDropItem(PlayerDropItemEvent e){
 		if (plugin.config.getBoolean("disable-drop-item.enable")){
-			if ((plugin.config.getStringList("disable-drop-item.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-drop-item")) && (!e.isCancelled())) 
 			{
 				if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 				{
@@ -109,7 +109,7 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	public void onPickUpItems(PlayerPickupItemEvent e){
 		if (plugin.config.getBoolean("disable-pick-up-items.enable")){
-			if ((plugin.config.getStringList("disable-pick-up-items.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
+			if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-pick-up-items")) && (!e.isCancelled())) 
 			{
 				if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 				{
@@ -206,7 +206,7 @@ public class PlayerListener implements Listener{
 	 @EventHandler (priority=EventPriority.HIGH)
 	 public void onJoinLobbyItem(PlayerJoinEvent e){
 		 if (plugin.config.getBoolean("lobby-items.enable") && plugin.config.getBoolean("lobby-items.join-server")){
-			 if (plugin.config.getStringList("lobby-items.world").contains(e.getPlayer().getWorld().getName())) 
+			 if (plugin.isWorldRadius(e.getPlayer().getLocation(), "lobby-items")) 
 			 {
 				for(CoreItem item : plugin.items) {
 					if(item.hasPerm(e.getPlayer())) {
@@ -237,7 +237,7 @@ public class PlayerListener implements Listener{
 					 if (!e.getPlayer().isOnline()) {
 				            return;
 				     }
-					 if (plugin.config.getStringList("lobby-items.world").contains(e.getPlayer().getWorld().getName())) {
+					 if (plugin.isWorldRadius(e.getPlayer().getLocation(), "lobby-items")) {
 						 for(CoreItem item : plugin.items) {
 							 if(item.hasPerm(e.getPlayer())) {
 								 item.give(e.getPlayer(), plugin.loader);
@@ -270,7 +270,7 @@ public class PlayerListener implements Listener{
 					 if (!e.getPlayer().isOnline()) {
 				            return;
 				     }
-					 if (plugin.config.getStringList("lobby-items.world").contains(e.getPlayer().getWorld().getName())) {
+					 if (plugin.isWorldRadius(e.getPlayer().getLocation(), "lobby-items")) {
 						 for(CoreItem item : plugin.items) {
 							 if(item.hasPerm(e.getPlayer())) {
 								 item.give(e.getPlayer(), plugin.loader);
@@ -294,7 +294,7 @@ public class PlayerListener implements Listener{
 	 @EventHandler
 	 public void onLobbyItemClick(PlayerInteractEvent e) {
 		 if (plugin.config.getBoolean("lobby-items.enable")) {
-			 if (plugin.config.getStringList("lobby-items.world").contains(e.getPlayer().getWorld().getName())) {
+			 if (plugin.isWorldRadius(e.getPlayer().getLocation(), "lobby-items")) {
 				 if ((e.getAction() == Action.RIGHT_CLICK_AIR) || (e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 					 ItemStack itemInHand = e.getItem();
 					 for(CoreItem item : plugin.items) {
@@ -352,7 +352,7 @@ public class PlayerListener implements Listener{
 	 @EventHandler
 	 public void onVoidTP(PlayerMoveEvent e) {
 		 if (plugin.config.getBoolean("void-tp.enable")) {
-			 if (plugin.config.getStringList("void-tp.world").contains(e.getPlayer().getWorld().getName())) {
+			 if (plugin.isWorldRadius(e.getPlayer().getLocation(), "void-tp")) {
 				 if(e.getPlayer().getLocation().getY() < plugin.config.getInt("void-tp.level")) {
 					 Set<String> k =  plugin.configSpawn.getKeys(false);  
 					 if (k == null || k.isEmpty()||k.size()== 0){
@@ -384,7 +384,7 @@ public class PlayerListener implements Listener{
 		 }
 		 if (plugin.config.getBoolean("frame-protect.enable")){
 			 if (e.getRightClicked() instanceof ItemFrame) {
-				 if (plugin.config.getStringList("frame-protect.world").contains(e.getPlayer().getWorld().getName())) {
+				 if (plugin.isWorldRadius(e.getPlayer().getLocation(), "frame-protect")) {
 					 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 					 {
 						 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -412,7 +412,7 @@ public class PlayerListener implements Listener{
 	 public void onSoilChangePlayer(PlayerInteractEvent e)
 	 {
 		 if (plugin.config.getBoolean("farm-protect.enable")) {
-			 if (plugin.config.getStringList("farm-protect.world").contains(e.getPlayer().getWorld().getName())) {
+			 if (plugin.isWorldRadius(e.getPlayer().getLocation(), "farm-protect")) {
 				 
 				 if ((e.getAction() == Action.PHYSICAL) && (CoreUtils.isMaterial(e.getClickedBlock().getType(),"SOIL","SOUL_SOIL","LEGACY_SOIL"))) {
 					 e.setCancelled(true);
@@ -434,7 +434,7 @@ public class PlayerListener implements Listener{
 		 if (plugin.config.getBoolean("jump-pads.enable")) {
 			 
 			 
-			 if (plugin.config.getStringList("jump-pads.world").contains(e.getPlayer().getWorld().getName())) {
+			 if (plugin.isWorldRadius(e.getPlayer().getLocation(), "jump-pads")) {
 				 Material mat1 = Material.getMaterial(plugin.config.getString("jump-pads.plate-block").toUpperCase());
 				 if(mat1==null) {
 					 mat1 = Material.getMaterial(plugin.config.getString("jump-pads.plate-block-old").toUpperCase());
@@ -900,7 +900,7 @@ public class PlayerListener implements Listener{
 	 public void onDispenserClick(PlayerInteractEvent e) {
 		 
 		 if (plugin.config.getBoolean("disable-dispenser-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-dispenser-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-dispenser-interaction")) && (!e.isCancelled())) 
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "DISPENSER")) {
@@ -931,7 +931,7 @@ public class PlayerListener implements Listener{
 	 @EventHandler
 	 public void onNoteBlockClick(PlayerInteractEvent e) {
 		 if (plugin.config.getBoolean("disable-noteblock-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-noteblock-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-noteblock-interaction")) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.LEFT_CLICK_BLOCK) {
 					 if(e.getClickedBlock().getType() == Material.NOTE_BLOCK) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
@@ -961,7 +961,7 @@ public class PlayerListener implements Listener{
 	 @EventHandler
 	 public void onButtonClick(PlayerInteractEvent e) {
 		 if (plugin.config.getBoolean("disable-button-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-button-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-button-interaction")) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 
 					 
@@ -994,7 +994,7 @@ public class PlayerListener implements Listener{
 	 @EventHandler
 	 public void onTrapdoorClick(PlayerInteractEvent e) {
 		 if (plugin.config.getBoolean("disable-trapdoor-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-trapdoor-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-trapdoor-interaction")) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 						
 					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "ACACIA_TRAPDOOR","BIRCH_TRAPDOOR","DARK_OAK_TRAPDOOR","IRON_TRAPDOOR","JUNGLE_TRAPDOOR","OAK_TRAPDOOR","SPRUCE_TRAPDOOR","TRAP_DOOR")) {
@@ -1026,7 +1026,7 @@ public class PlayerListener implements Listener{
 	 @EventHandler
 	 public void onFenceGateClick(PlayerInteractEvent e) {
 		 if (plugin.config.getBoolean("disable-fence-gate-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-fence-gate-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-fence-gate-interaction")) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "ACACIA_FENCE_GATE","BIRCH_FENCE_GATE","DARK_OAK_FENCE_GATE","JUNGLE_FENCE_GATE","FENCE_GATE","OAK_FENCE_GATE","SPRUCE_FENCE_GATE") ) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
@@ -1056,7 +1056,7 @@ public class PlayerListener implements Listener{
 	 @EventHandler
 	 public void onHopperClick(PlayerInteractEvent e) {
 		 if (plugin.config.getBoolean("disable-hopper-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-hopper-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) {
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-hopper-interaction")) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "HOPPER","HOPPER_MINECART") ) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
@@ -1089,7 +1089,7 @@ public class PlayerListener implements Listener{
 	 public void onDropperClick(PlayerInteractEvent e) {
 		 
 		 if (plugin.config.getBoolean("disable-dropper-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-dropper-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-dropper-interaction")) && (!e.isCancelled())) 
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "DROPPER")) {
@@ -1122,7 +1122,7 @@ public class PlayerListener implements Listener{
 	 public void onDaylightSensorClick(PlayerInteractEvent e) {
 		 
 		 if (plugin.config.getBoolean("disable-daylight-sensor-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-daylight-sensor-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-daylight-sensor-interaction")) && (!e.isCancelled())) 
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 if(CoreUtils.isMaterial(e.getClickedBlock().getType(), "DAYLIGHT_DETECTOR","DAYLIGHT_DETECTOR_INVERTED","LEGACY_DAYLIGHT_DETECTOR_INVERTED")) {
@@ -1155,7 +1155,7 @@ public class PlayerListener implements Listener{
 	 public void onArmorStandsClick(PlayerArmorStandManipulateEvent e) {
 		 
 		 if (plugin.config.getBoolean("disable-armorstands-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-armorstands-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-armorstands-interaction")) && (!e.isCancelled())) 
 			 {
 				 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 				 {
@@ -1185,7 +1185,7 @@ public class PlayerListener implements Listener{
 	 public void onDoor(PlayerInteractEvent e) {
 		 
 		 if (plugin.config.getBoolean("disable-door-interaction.enable")){
-			 if ((plugin.config.getStringList("disable-door-interaction.world").contains(e.getPlayer().getWorld().getName())) && (!e.isCancelled())) 
+			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-door-interaction")) && (!e.isCancelled())) 
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 

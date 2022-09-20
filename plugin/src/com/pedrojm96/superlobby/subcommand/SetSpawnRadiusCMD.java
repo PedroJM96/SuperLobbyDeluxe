@@ -7,18 +7,19 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.pedrojm96.core.CoreColor;
+import com.pedrojm96.core.CoreUtils;
 import com.pedrojm96.core.command.CoreSubCommand;
 import com.pedrojm96.superlobby.AllString;
 import com.pedrojm96.superlobby.SuperLobby;
 
 
-public class SetSpawnPermissionCMD extends CoreSubCommand{
+public class SetSpawnRadiusCMD extends CoreSubCommand{
 
 	private SuperLobby plugin;
 	
-	public SetSpawnPermissionCMD(SuperLobby plugin) {
+	public SetSpawnRadiusCMD(SuperLobby plugin) {
 		this.plugin = plugin;
-		this.plugin.log.info("Register sub-command setspawnpermission");
+		this.plugin.log.info("Register sub-command setspawnradius");
 	}
 	
 	
@@ -30,16 +31,21 @@ public class SetSpawnPermissionCMD extends CoreSubCommand{
        	 	return true;
 		}
 		if(args.length <= 1){
-			CoreColor.message(sender, AllString.prefix + AllString.use_command_setspawn_permission);
+			CoreColor.message(sender, AllString.prefix + AllString.use_command_setspawn_radius);
 			return true;	
 		}
 		String name = args[0];
-		String perm = args[1];
+		int radio =  CoreUtils.toint(args[1], 0);
 		if(!this.plugin.configSpawn.contains(name)) {
 			CoreColor.message(sender,AllString.prefix + AllString.error_no_spawn);
 			return true;
 		}
-		this.plugin.configSpawn.set(name+".permission", perm);
+		if(radio==0) {
+			CoreColor.message(sender, AllString.prefix + AllString.use_command_setspawn_radius);
+			CoreColor.message(sender,AllString.prefix + AllString.error_command_setspawn_radius);
+			return true;
+		}
+		this.plugin.configSpawn.set(name+".protection-radius", radio);
 		this.plugin.configSpawn.save();
 		CoreColor.message(sender,AllString.prefix + AllString.set_spawn.replaceAll("<spawn>", name.toLowerCase()));
 		this.plugin.loadSpawn();
