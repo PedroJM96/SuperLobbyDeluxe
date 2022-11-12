@@ -71,6 +71,27 @@ public class EntityListener implements Listener{
 	@EventHandler (priority=EventPriority.HIGH)
 	public void onEntityDamage(EntityDamageEvent e)
 	{
+		if (plugin.config.getBoolean("frame-protect.enable")){
+			if ((plugin.isWorldRadius(e.getEntity().getLocation(), "frame-protect")) && (!e.isCancelled())) {
+				if (e instanceof EntityDamageByEntityEvent) {
+
+					EntityDamageByEntityEvent event = (EntityDamageByEntityEvent) e;
+					if (event.getDamager() instanceof Projectile) {
+						if (!(((Projectile) event.getDamager()).getShooter() instanceof LivingEntity)) return;
+						if (event.getEntity() instanceof ItemFrame) {
+							event.setCancelled(true);
+						}
+						return;
+					}
+
+					if (!(event.getEntity() instanceof ItemFrame)) return;
+					if (!event.getDamager().isOp() || !event.getDamager().hasPermission("superlobby.staff")) return;
+					if (((Player) event.getDamager()).getGameMode() != GameMode.CREATIVE) return;
+
+					event.setCancelled(true);
+				}
+			}
+		}
 	    if (!(e.getEntity() instanceof Player)) {
 	      return;
 	    }
