@@ -85,10 +85,16 @@ public class EntityListener implements Listener{
 					}
 
 					if (!(event.getEntity() instanceof ItemFrame)) return;
-					if (!event.getDamager().isOp() || !event.getDamager().hasPermission("superlobby.staff")) return;
-					if (((Player) event.getDamager()).getGameMode() != GameMode.CREATIVE) return;
-
-					event.setCancelled(true);
+					if (attacker instanceof Player) {
+            					if (attacker.isOp() || attacker.hasPermission("superlobby.staff")) {
+                					if (((Player) event.getDamager()).getGameMode() == GameMode.CREATIVE) return;
+                					event.setCancelled(true);
+							return;
+            					}
+            					event.setCancelled(true);
+            					return;
+        				}
+        				event.setCancelled(true);
 				}
 			}
 		}
