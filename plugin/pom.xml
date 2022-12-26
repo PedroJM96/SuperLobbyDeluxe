@@ -11,7 +11,7 @@
   <parent>
         <groupId>com.pedrojm96</groupId>
         <artifactId>SuperLobbyDeluxe</artifactId>
-        <version>4.5.3</version>
+        <version>4.5.5</version>
   </parent>
   
   <build>
@@ -164,7 +164,7 @@
      <dependency>
        <groupId>com.github.MilkBowl</groupId>
        <artifactId>VaultAPI</artifactId>
-       <version>1.7</version>
+       <version>1.7.1</version>
        <scope>provided</scope>
      </dependency>
      <!--PlayerPoints-->

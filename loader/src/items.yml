@@ -68,7 +68,8 @@ game:
   permission: superlobby.items.game
 profile:
   name: '&8<3>  &6Profile &a<player> &8<3>  &7(Right button)'
-  material: SKULL_ITEM:3
+  material: 'PLAYER_HEAD'
+  material-old: 'SKULL_ITEM:3'
   slot: 3
   skull: <player>
   commands:
