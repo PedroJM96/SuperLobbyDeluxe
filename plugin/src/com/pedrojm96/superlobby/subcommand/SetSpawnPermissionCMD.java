@@ -41,8 +41,9 @@ public class SetSpawnPermissionCMD extends CoreSubCommand{
 		}
 		this.plugin.configSpawn.set(name+".permission", perm);
 		this.plugin.configSpawn.save();
-		CoreColor.message(sender,AllString.prefix + AllString.set_spawn.replaceAll("<spawn>", name.toLowerCase()));
 		this.plugin.loadSpawn();
+		CoreColor.message(sender,AllString.prefix + AllString.set_spawn.replaceAll("<spawn>", name.toLowerCase()));
+		
 		return true;
 	}
 

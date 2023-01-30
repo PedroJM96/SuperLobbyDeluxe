@@ -32,4 +32,4 @@ bin
 **/*.bak
 
 # Ignora todos los archivos jarinjar
-**superstats-plugin.jarinjar
+**superlobby-plugin.jarinjar

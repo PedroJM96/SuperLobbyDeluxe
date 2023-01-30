@@ -42,6 +42,7 @@ public class SetSpawnCMD extends CoreSubCommand{
 		this.plugin.configSpawn.set(name+".pi", p.getLocation().getPitch());
 		
 		this.plugin.configSpawn.save();
+		this.plugin.loadSpawn();
 		CoreColor.message(sender,AllString.prefix + AllString.set_spawn.replaceAll("<spawn>", name.toLowerCase()));
 		return true;
 	}

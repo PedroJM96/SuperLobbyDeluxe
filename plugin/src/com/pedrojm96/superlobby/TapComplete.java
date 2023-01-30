@@ -87,12 +87,17 @@ public class TapComplete {
 				        	String mensaje = packet.getStrings().read(0);
 				        	
 				        	
+				        	
 				        	if(mensaje.contains(" ")) {
 				        		String[] mensajes = mensaje.split(" ");
-				        		if(!containListTab(mensajes[0])) {
-				        			blocktab.add(event.getPlayer().getName());
-				        			superlobby.log.debug("bloqueo");
+				        		if(mensajes.length>0) {
+				        			if(!containListTab(mensajes[0])) {
+					        			blocktab.add(event.getPlayer().getName());
+					        			superlobby.log.debug("bloqueo");
+					        		}
+				        			
 				        		}
+				        		
 				        	}else {
 				        		blocktab.add(event.getPlayer().getName());
 				        		superlobby.log.debug("bloqueo");
