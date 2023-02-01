@@ -36,8 +36,10 @@ prefix: '&6SuperLobby &e>> &7'
 messages: EN
 #To clean the inventory to enter the server.
 join-clear-inventory: true
+join-clear-inventory-bypass: false
 #To clean the chat when entering the server.
 join-clear-chat: true
+join-clear-chat-bypass: false
 #To teleport the player to the spawn when entering the server.
 join-spawn: true
 #To transport the player to spawn when they place the command /spawn

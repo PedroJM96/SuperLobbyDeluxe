@@ -137,13 +137,30 @@ public class PlayerListener implements Listener{
 	@EventHandler(priority=EventPriority.LOWEST)
 	public void onJoinClear(PlayerJoinEvent e){
 		if (plugin.config.getBoolean("join-clear-inventory")){
-			e.getPlayer().getInventory().clear();
+			if(plugin.config.getBoolean("join-clear-inventory-bypass")) {
+				if(!e.getPlayer().hasPermission("join.bypass.clearinventory")) {
+					e.getPlayer().getInventory().clear();
+				}
+			}else {
+				e.getPlayer().getInventory().clear();
+			}	
 		}
 		if (plugin.config.getBoolean("join-clear-chat")){
-			for (int i = 0; i < 120; i++) {
-				Player p = e.getPlayer();  
-				p.sendMessage("");
+			if(plugin.config.getBoolean("join-clear-chat-bypass")) {
+				if(!e.getPlayer().hasPermission("join.bypass.clearchat")) {
+					for (int i = 0; i < 120; i++) {
+						Player p = e.getPlayer();  
+						p.sendMessage("");
+					}
+				}
+				
+			}else {
+				for (int i = 0; i < 120; i++) {
+					Player p = e.getPlayer();  
+					p.sendMessage("");
+				}
 			}
+			
 		}	
 	}
 	/**
