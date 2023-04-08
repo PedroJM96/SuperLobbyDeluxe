@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pedrojm96</groupId>
   <artifactId>SuperLobbyDeluxe</artifactId>
-  <version>4.5.7</version>
+  <version>4.5.8</version>
   <name>SuperLobbyDeluxe</name>
   <description>Customize many functions and features of the server lobby in a powerful and free for all.</description>
   <packaging>pom</packaging>
