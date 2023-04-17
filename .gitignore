@@ -33,3 +33,7 @@ bin
 
 # Ignora todos los archivos jarinjar
 **superlobby-plugin.jarinjar
+
+
+# Ignora todos los archivos jarinjar
+**/superlobby-plugin.jarinjar
