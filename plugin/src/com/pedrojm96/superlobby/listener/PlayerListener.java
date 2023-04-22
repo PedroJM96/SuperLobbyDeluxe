@@ -982,7 +982,7 @@ public class PlayerListener implements Listener{
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 
 					 
-					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_BUTTON","BIRCH_BUTTON","DARK_OAK_BUTTON","JUNGLE_BUTTON","OAK_BUTTON","SPRUCE_BUTTON","STONE_BUTTON","WOOD_BUTTON","STONE_BUTTON")  ) {
+					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_BUTTON","BIRCH_BUTTON","DARK_OAK_BUTTON","JUNGLE_BUTTON","OAK_BUTTON","SPRUCE_BUTTON","STONE_BUTTON","WOOD_BUTTON","STONE_BUTTON","CRIMSON_BUTTON","WARPED_BUTTON","MANGROVE_BUTTON")  ) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -1014,7 +1014,7 @@ public class PlayerListener implements Listener{
 			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-trapdoor-interaction")) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 						
-					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_TRAPDOOR","BIRCH_TRAPDOOR","DARK_OAK_TRAPDOOR","IRON_TRAPDOOR","JUNGLE_TRAPDOOR","OAK_TRAPDOOR","SPRUCE_TRAPDOOR","TRAP_DOOR")) {
+					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_TRAPDOOR","BIRCH_TRAPDOOR","DARK_OAK_TRAPDOOR","IRON_TRAPDOOR","JUNGLE_TRAPDOOR","OAK_TRAPDOOR","SPRUCE_TRAPDOOR","TRAP_DOOR","CRIMSON_TRAPDOOR","WARPED_TRAPDOOR","MANGROVE_TRAPDOOR")) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
