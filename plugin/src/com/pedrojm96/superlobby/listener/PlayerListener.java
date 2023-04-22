@@ -1045,7 +1045,7 @@ public class PlayerListener implements Listener{
 		 if (plugin.config.getBoolean("disable-fence-gate-interaction.enable")){
 			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-fence-gate-interaction")) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_FENCE_GATE","BIRCH_FENCE_GATE","DARK_OAK_FENCE_GATE","JUNGLE_FENCE_GATE","FENCE_GATE","OAK_FENCE_GATE","SPRUCE_FENCE_GATE") ) {
+					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_FENCE_GATE","BIRCH_FENCE_GATE","DARK_OAK_FENCE_GATE","JUNGLE_FENCE_GATE","FENCE_GATE","OAK_FENCE_GATE","SPRUCE_FENCE_GATE","CRIMSON_FENCE_GATE","WARPED_FENCE_GATE","MANGROVE_FENCE_GATE") ) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -1206,7 +1206,7 @@ public class PlayerListener implements Listener{
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 
-					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_DOOR","BIRCH_DOOR","DARK_OAK_DOOR","IRON_DOOR","JUNGLE_DOOR","OAK_DOOR","SPRUCE_DOOR","WOOD_DOOR","WOODEN_DOOR","CRIMSON_DOOR","WARPED_DOOR")) {
+					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_DOOR","BIRCH_DOOR","DARK_OAK_DOOR","IRON_DOOR","JUNGLE_DOOR","OAK_DOOR","SPRUCE_DOOR","WOOD_DOOR","WOODEN_DOOR","CRIMSON_DOOR","WARPED_DOOR","MANGROVE_DOOR")) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
