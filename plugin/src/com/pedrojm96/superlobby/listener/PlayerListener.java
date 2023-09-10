@@ -63,6 +63,15 @@ import com.pedrojm96.superlobby.SuperLobby;
 public class PlayerListener implements Listener{
 	
 	public SuperLobby plugin;
+
+	private final String[] buttons = {"ACACIA_BUTTON","BIRCH_BUTTON","DARK_OAK_BUTTON","JUNGLE_BUTTON","OAK_BUTTON","SPRUCE_BUTTON","STONE_BUTTON","WOOD_BUTTON",
+			"STONE_BUTTON","CRIMSON_BUTTON","WARPED_BUTTON","MANGROVE_BUTTON","BAMBOO_BUTTON","CHERRY_BUTTON"};
+	private final String[] trapdoors = {"ACACIA_TRAPDOOR","BIRCH_TRAPDOOR","DARK_OAK_TRAPDOOR","IRON_TRAPDOOR","JUNGLE_TRAPDOOR","OAK_TRAPDOOR","SPRUCE_TRAPDOOR",
+			"TRAP_DOOR","CRIMSON_TRAPDOOR","WARPED_TRAPDOOR","MANGROVE_TRAPDOOR","BAMBOO_TRAPDOOR", "CHERRY_TRAPDOOR"};
+	private final String[] doors = {"ACACIA_DOOR","BIRCH_DOOR","DARK_OAK_DOOR","IRON_DOOR","JUNGLE_DOOR","OAK_DOOR","SPRUCE_DOOR","WOOD_DOOR","WOODEN_DOOR",
+			"CRIMSON_DOOR","WARPED_DOOR","MANGROVE_DOOR", "BAMBOO_DOOR", "CHERRY_DOOR"};
+	private final String[] gates = {"ACACIA_FENCE_GATE","BIRCH_FENCE_GATE","DARK_OAK_FENCE_GATE","JUNGLE_FENCE_GATE","FENCE_GATE","OAK_FENCE_GATE","SPRUCE_FENCE_GATE",
+			"CRIMSON_FENCE_GATE","WARPED_FENCE_GATE","MANGROVE_FENCE_GATE", "BAMBOO_FENCE_GATE", "CHERRY_FENCE_GATE"};
 	
 	public PlayerListener(SuperLobby plugin) {
 		this.plugin = plugin;
@@ -982,7 +991,7 @@ public class PlayerListener implements Listener{
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 
 					 
-					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_BUTTON","BIRCH_BUTTON","DARK_OAK_BUTTON","JUNGLE_BUTTON","OAK_BUTTON","SPRUCE_BUTTON","STONE_BUTTON","WOOD_BUTTON","STONE_BUTTON","CRIMSON_BUTTON","WARPED_BUTTON","MANGROVE_BUTTON")  ) {
+					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), buttons)  ) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -1014,7 +1023,7 @@ public class PlayerListener implements Listener{
 			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-trapdoor-interaction")) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 						
-					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_TRAPDOOR","BIRCH_TRAPDOOR","DARK_OAK_TRAPDOOR","IRON_TRAPDOOR","JUNGLE_TRAPDOOR","OAK_TRAPDOOR","SPRUCE_TRAPDOOR","TRAP_DOOR","CRIMSON_TRAPDOOR","WARPED_TRAPDOOR","MANGROVE_TRAPDOOR")) {
+					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), trapdoors)) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -1045,7 +1054,7 @@ public class PlayerListener implements Listener{
 		 if (plugin.config.getBoolean("disable-fence-gate-interaction.enable")){
 			 if ((plugin.isWorldRadius(e.getPlayer().getLocation(), "disable-fence-gate-interaction")) && (!e.isCancelled())) {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_FENCE_GATE","BIRCH_FENCE_GATE","DARK_OAK_FENCE_GATE","JUNGLE_FENCE_GATE","FENCE_GATE","OAK_FENCE_GATE","SPRUCE_FENCE_GATE","CRIMSON_FENCE_GATE","WARPED_FENCE_GATE","MANGROVE_FENCE_GATE") ) {
+					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), gates) ) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
@@ -1206,7 +1215,7 @@ public class PlayerListener implements Listener{
 			 {
 				 if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
 					 
-					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), "ACACIA_DOOR","BIRCH_DOOR","DARK_OAK_DOOR","IRON_DOOR","JUNGLE_DOOR","OAK_DOOR","SPRUCE_DOOR","WOOD_DOOR","WOODEN_DOOR","CRIMSON_DOOR","WARPED_DOOR","MANGROVE_DOOR")) {
+					 if(CoreMaterial.isMaterial(e.getClickedBlock().getType(), doors)) {
 						 if ((e.getPlayer().isOp()) || (e.getPlayer().hasPermission("superlobby.staff")))
 						 {
 							 if (e.getPlayer().getGameMode() == GameMode.CREATIVE) 
