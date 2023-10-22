@@ -15,6 +15,10 @@ public class Spawns {
 		spawns.add(spawn);
 	}
 	
+	public List<Spawn> getSpawns() {
+		return spawns;
+	}
+	
 	public Location nextSpawn() {
 		Location retorno;
 		if(ronda < spawns.size()){

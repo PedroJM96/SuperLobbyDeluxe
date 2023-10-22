@@ -226,6 +226,11 @@ public class SuperLobby implements CoreLoader{
 		mainCommand.addSubCommand(Arrays.asList("openmenu"), new OpenMenuCMD(this));
 		CoreCommands.registerCommand(mainCommand, this.loader);
 		
+		if(plugin.config.getBoolean("command-spawn")) {
+			CommandsSpawn commandSpawn = new CommandsSpawn(this);
+			CoreCommands.registerCommand(commandSpawn, this.loader);
+		}
+		
 		/******************************************************************************************************************
 		 *                                          Registro de eventos                                                   *
 		 ******************************************************************************************************************/
@@ -409,7 +414,7 @@ public class SuperLobby implements CoreLoader{
 					 double z = configSpawn.getDouble(s+".z");
 					 int yaw = configSpawn.getInt(s+".yaw");
 					 int pi = configSpawn.getInt(s+".pi");
-					 Spawn spawn = new Spawn(new Location(w,x,y,z,yaw,pi));
+					 Spawn spawn = new Spawn(new Location(w,x,y,z,yaw,pi),s);
 					 if(configSpawn.contains(s+".protection-radius")) {
 						 spawn.setProtection_radius(configSpawn.getInt(s+".protection-radius"));
 					 }
@@ -427,7 +432,7 @@ public class SuperLobby implements CoreLoader{
 					 double z = configSpawn.getDouble(s+".z");
 					 int yaw = configSpawn.getInt(s+".yaw");
 					 int pi = configSpawn.getInt(s+".pi");
-					 Spawn spawn = new Spawn(new Location(w,x,y,z,yaw,pi));
+					 Spawn spawn = new Spawn(new Location(w,x,y,z,yaw,pi),s);
 					 if(configSpawn.contains(s+".protection-radius")) {
 						 spawn.setProtection_radius(configSpawn.getInt(s+".protection-radius"));
 					 }
@@ -471,7 +476,40 @@ public class SuperLobby implements CoreLoader{
 		 }
 	}
 	
+	public void teleportToSpawn(final Player p, String name) {
+		
+		 if (this.spawnss.isEmpty()) {
+			 Bukkit.getScheduler().scheduleSyncDelayedTask(this.instance, new Runnable() {
+					public void run() {
+						CoreColor.message(p, AllString.prefix + AllString.error_spawn_not_set);
+					}
+				}, 10);
+		 }else {
+			 Spawn spawn = this.getSpawn(name);
+			 if(spawn!=null) {
+				 p.teleport(spawn.getLocation());
+			 }else {
+				 CoreColor.message(p, AllString.prefix + AllString.error_spawn_not_set);
+			 } 
+		 }
+	}
 	
+	
+	public Spawn getSpawn(String name) {
+		Spawn returno = null;
+		for(String perm : this.spawnss.keySet()) {
+			for(Spawn spawn : this.spawnss.get(perm).getSpawns()) {
+				if(spawn.getName().equalsIgnoreCase(name)) {
+					returno = spawn;
+					break;
+				}
+			 }
+			if(returno!=null) {
+				break;
+			}
+		 }
+		return returno;
+	}
 	
 	public void loadMenus(){
 		menus = new HashMap<String, CoreMenu>();

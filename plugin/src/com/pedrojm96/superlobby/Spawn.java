@@ -5,14 +5,21 @@ import org.bukkit.Location;
 public class Spawn {
 	private int protection_radius = 0;
 	private Location spawn;
+	private String name;
 	
-	public Spawn(Location spawn) {
+	public Spawn(Location spawn, String name) {
 		this.spawn = spawn;
+		this.name = name;
 	}
 	
-	public Spawn(Location spawn, int radius) {
+	public Spawn(Location spawn, int radius, String name) {
 		this.spawn = spawn;
 		protection_radius = radius;
+		this.name = name;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 
 	/**

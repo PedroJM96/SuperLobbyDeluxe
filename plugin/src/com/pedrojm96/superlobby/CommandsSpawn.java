@@ -3,27 +3,24 @@ package com.pedrojm96.superlobby;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.pedrojm96.core.CoreColor;
 import com.pedrojm96.core.command.CorePluginCommand;
-import com.pedrojm96.core.inventory.menu.CoreMenu;
 
 
 
-public class CommandsMenu extends CorePluginCommand{
+public class CommandsSpawn extends CorePluginCommand{
 
 	
 	private SuperLobby plugin;
 	
-	private String menu = null;
 
-	
-	public CommandsMenu(SuperLobby plugin,String menuname){
+	public CommandsSpawn(SuperLobby plugin){
 		this.plugin = plugin;
-		this.menu = menuname;
-		plugin.log.info("Register command menu /"+plugin.menus.get(menu).getCommands());
+		plugin.log.info("Register command  /spawn");
 	}
 	
 	
@@ -38,32 +35,40 @@ public class CommandsMenu extends CorePluginCommand{
 		
 		Player player = (Player)sender;
 		
-		CoreMenu m = plugin.menus.get(menu);
 		
-		if(m.getWorlds() != null ) {
-			boolean isworld =false;
-			for(String world : m.getWorlds()) {
-				 if(world.equalsIgnoreCase(player.getWorld().getName())) {
-					  isworld = true;
-					  break;  
-		    	  } 
+		
+		if(plugin.config.getBoolean("command-spawn")){
+			 if(player.hasPermission("superlobby.use")){
+				 if(args.length <= 0){
+					 plugin.teleportToSpawn(player);
+				  }
+				 if(args.length <= 1){
+					 String name = args[0];
+					 plugin.teleportToSpawn(player,name);
+				  }
+				 if(player.hasPermission("superlobby.admin")) {
+					 String name = args[0];
+					  String playername = args[1];
+					  if((Bukkit.getPlayerExact(playername) == null) || (!Bukkit.getPlayerExact(playername).isOnline())) {
+							CoreColor.message(sender,AllString.prefix + AllString.error_no_online);
+					   }else {
+						   Player player2 = Bukkit.getPlayerExact(playername);
+						   plugin.teleportToSpawn(player2,name); 
+					   }
+				 }else {
+					 CoreColor.message(player, AllString.prefix + AllString.error_no_permission);
+				 }  
+			 }else {
+				 CoreColor.message(player, AllString.prefix + AllString.error_no_permission);
 			 }
-			 if(!isworld) {
-				 CoreColor.message(player, AllString.prefix + AllString.error_no_world);
-	    		 return true; 
-			 }
-	     }
-	     if(m.getSound()!=null){
-	    	 player.playSound(player.getLocation(), m.getSound(), 1.0F, 1.0F);
-	     }
-	     m.open(player);
+		 }
 	     return true;
 	}
 
 	@Override
 	public String getPerm() {
 		// TODO Auto-generated method stub
-		return plugin.menus.get(menu).getPerm();
+		return "superlobby.use";
 	}
 
 
@@ -82,7 +87,7 @@ public class CommandsMenu extends CorePluginCommand{
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return plugin.menus.get(menu).getCommands();
+		return "spawn";
 	}
 
 	@Override
@@ -94,13 +99,13 @@ public class CommandsMenu extends CorePluginCommand{
 	@Override
 	public String getUsage() {
 		// TODO Auto-generated method stub
-		return "/"+plugin.menus.get(menu).getCommands();
+		return "/spawn";
 	}
 
 	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
-		return "SuperLobby menu commands /"+plugin.menus.get(menu).getCommands()+" commands";
+		return "SuperLobby spawn commands.";
 	}
 
 }

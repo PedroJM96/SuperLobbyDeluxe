@@ -174,9 +174,13 @@ public class EntityListener implements Listener{
 		if(e.getEntity() == null){
 			return;
 		}
-		if(e.getSpawnReason()!=SpawnReason.NATURAL) {
+		if(e.getSpawnReason()==SpawnReason.COMMAND) {
 			return;
 		}
+		if(e.getSpawnReason()==SpawnReason.EGG) {
+			return;
+		}
+
 		if (plugin.config.getBoolean("disable-creature-spawn.enable")){
 			if (plugin.isWorldRadius(e.getEntity().getLocation(), "disable-creature-spawn")) 
 			{
