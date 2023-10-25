@@ -10,7 +10,7 @@
   <parent>
         <groupId>com.pedrojm96</groupId>
         <artifactId>SuperLobbyDeluxe</artifactId>
-        <version>4.6.8</version>
+        <version>4.6.9</version>
   </parent>
   <build>
     <sourceDirectory>src</sourceDirectory>

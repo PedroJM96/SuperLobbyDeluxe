@@ -174,9 +174,6 @@ public class EntityListener implements Listener{
 		if(e.getEntity() == null){
 			return;
 		}
-		if(e.getSpawnReason()==SpawnReason.COMMAND) {
-			return;
-		}
 		if(e.getSpawnReason()==SpawnReason.EGG) {
 			return;
 		}

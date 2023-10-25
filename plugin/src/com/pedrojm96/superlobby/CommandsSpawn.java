@@ -34,33 +34,38 @@ public class CommandsSpawn extends CorePluginCommand{
 		}
 		
 		Player player = (Player)sender;
-		
-		
-		
 		if(plugin.config.getBoolean("command-spawn")){
-			 if(player.hasPermission("superlobby.use")){
-				 if(args.length <= 0){
-					 plugin.teleportToSpawn(player);
-				  }
-				 if(args.length <= 1){
-					 String name = args[0];
-					 plugin.teleportToSpawn(player,name);
-				  }
-				 if(player.hasPermission("superlobby.admin")) {
-					 String name = args[0];
-					  String playername = args[1];
-					  if((Bukkit.getPlayerExact(playername) == null) || (!Bukkit.getPlayerExact(playername).isOnline())) {
-							CoreColor.message(sender,AllString.prefix + AllString.error_no_online);
-					   }else {
-						   Player player2 = Bukkit.getPlayerExact(playername);
-						   plugin.teleportToSpawn(player2,name); 
-					   }
-				 }else {
-					 CoreColor.message(player, AllString.prefix + AllString.error_no_permission);
-				 }  
-			 }else {
-				 CoreColor.message(player, AllString.prefix + AllString.error_no_permission);
+			 
+			
+			if(!player.hasPermission("superlobby.use")){
+				CoreColor.message(player, AllString.prefix + AllString.error_no_permission);
+				return true; 
 			 }
+			
+			if(args.length <= 0){
+				 plugin.teleportToSpawn(player);
+				 return true;
+			  }
+			 if(args.length <= 1){
+				 String name = args[0];
+				 plugin.teleportToSpawn(player,name);
+				 return true;
+			  }
+			 if(!player.hasPermission("superlobby.admin")) {
+				 CoreColor.message(player, AllString.prefix + AllString.error_no_permission);
+				 return true;
+			 }
+			 
+			  String name = args[0];
+			  String playername = args[1];
+			  if((Bukkit.getPlayerExact(playername) == null) || (!Bukkit.getPlayerExact(playername).isOnline())) {
+					CoreColor.message(sender,AllString.prefix + AllString.error_no_online);
+					return true;
+			   }
+			   Player player2 = Bukkit.getPlayerExact(playername);
+			   plugin.teleportToSpawn(player2,name); 
+			   return true;
+			   
 		 }
 	     return true;
 	}
