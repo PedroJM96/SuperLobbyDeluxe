@@ -22,9 +22,9 @@ public class TapCompleteListener implements Listener{
 	
 	
 	public boolean containListTab(String tab) {
-		List<String> listablanca = plugin.config.getStringList("disable-tab-complete.whitelist");
+		List<String> whitelist = plugin.config.getStringList("disable-tab-complete.whitelist");
 		
-		for(String m : listablanca) {
+		for(String m : whitelist) {
 			if(m.equalsIgnoreCase("/"+tab)) {
 				return true;
 			}
@@ -36,19 +36,23 @@ public class TapCompleteListener implements Listener{
 	
 	 @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	  public void onTab(PlayerCommandSendEvent e) {
+		 ArrayList<String> toRemove = new ArrayList<>();
 		 
+		 for(String command : e.getCommands()) {
+		     if(!containListTab(command)) {
+		         toRemove.add(command);
+		     }
+		 }
+		 e.getCommands().removeAll(toRemove);
 		
      	
-		List<String> filter = new ArrayList<String>();			        	
-     	for(String m : e.getCommands()) {
-     		if(containListTab(m)) {
-     			filter.add(m);
-     			plugin.log.debug("lista(): "+m);
-     			
-     		}
-     	}
-     	e.getCommands().clear();
-     	e.getCommands().addAll(filter); 
+			/*
+			 * List<String> filter = new ArrayList<String>(); for(String m :
+			 * e.getCommands()) { if(containListTab(m)) { filter.add(m);
+			 * plugin.log.debug("lista(): "+m);
+			 * 
+			 * } } e.getCommands().clear(); e.getCommands().addAll(filter);
+			 */
 	 }
 	
 }
