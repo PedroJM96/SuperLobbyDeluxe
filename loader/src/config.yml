@@ -48,6 +48,8 @@ command-spawn: true
 info-commands: true
 #To activate custom events.
 custom-events: true
+#Hide the player's achievements.
+disable-achievements: true
 #To activate the menus.
 menu: true
 #Deactivate the player's interaction with the daylight sensor.

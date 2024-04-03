@@ -278,6 +278,10 @@ public class SuperLobby implements CoreLoader{
 			}
 		}
 		
+		if(config.getBoolean("disable-achievements")) {
+			hideAdvancementsFor();
+		}
+		
 		if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
 			log.alert("Hooked PlaceholderAPI");
 			CoreVariables.placeholderAPI(true);
@@ -302,6 +306,18 @@ public class SuperLobby implements CoreLoader{
 	}
 	
 	
+	
+	@SuppressWarnings("deprecation")
+	private void hideAdvancementsFor() {
+		if(CoreVersion.getVersion().esMenorIgual(CoreVersion.v1_10_x)) {
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule announceAdvancements false");
+		}else {
+			for(World world : Bukkit.getWorlds()) {
+				world.setGameRuleValue("announceAdvancements", "false");
+			}
+		}
+        log.info("&7Achievements are now hidden.");
+    }
 	
 	@SuppressWarnings("deprecation")
 	public void loadFirsJoinKit() {
