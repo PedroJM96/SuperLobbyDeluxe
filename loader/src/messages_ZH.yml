@@ -1,17 +1,17 @@
 ﻿error-no-console: '&c在控制台中无法使用此指令。'
 error-no-permission: '&7你没有权限使用此指令。'
-error-spawn-not-set: '&7重复大厅名。'
-error-no-spawn: '&7没有主城在数据库里。'
+error-spawn-not-set: '&7未设置出生点。'
+error-no-spawn: '&7没有主城在数据库中。'
 use-command: '&7使用 &a/superLobby help | ? &7来获取帮助。'
-use-command-setspawn: '&7参数错误。&7使用&e /superlobby &asetSpawn &3<name>。'
-use-command-setspawn-permission: '&7Invalid argument. &7Use &e/superlobby &asetspawnpermission &3<name> <perm>.'
-use-command-remspawn: '&7参数错误。&7使用&e /superlobby &aremSpawn &3<name>&7 | &3all。'
+use-command-setspawn: '&7参数错误。&7请使用&e /superlobby &asetSpawn &3<name>。'
+use-command-setspawn-permission: '&7参数错误。&7请使用 &e/superlobby &asetspawnpermission &3<name> <perm>.'
+use-command-remspawn: '&7参数错误。&7请使用&e /superlobby &aremSpawn &3<name>&7 | &3all。'
 set-spawn: '&7大厅 <spawn> 已添加。'
 rem-spawn: '大厅 <spawn> 已删除。'
 click-wait: '&7请等待 &b<time> &7秒后再使用一次。'
-error-no-command: '&c你输入了一个错误的指令。'
-error-no-world: '&c此世界没有启动插件。'
-no-money: '&7你没有足够的金币。'
+error-no-command: '&c此命令不可用'
+error-no-world: '&c在此世界中不可用。'
+no-money: '&7你没有足够的金钱。'
 config-loaded: '&7配置文档已重新载入'
 help-command-reload: '&7[&6&l>&7] &a/superLobby reload'
 help-description-reload: '&7[&6&l-&7] &7重载配置文档。'
@@ -21,10 +21,10 @@ help-command-remSpawn: '&7[&6&l>&7] &a/superlobby remSpawn <name> | all'
 help-description-remSpawn: '&7[&6&l-&7] &7删除1个或全部大厅'
 
 error-no-menu: "&7该菜单不存在。"
-error-no-online: "&7该播放器当前未在线。"
-use-command-openmenu: '&7参数错误。 &7使用 &e/superlobby &aopenmenu &3<playername> <menuname>.'
+error-no-online: "&7该玩家当前未在线。"
+use-command-openmenu: '&7参数错误。 &7请使用 &e/superlobby &aopenmenu &3<playername> <menuname>.'
 help-command-openmenu: '&7[&6&l>&7] &a/superlobby openmenu <playername> <menuname>'
-help-description-openmenu: '&7[&6&l-&7] &7打开选定的菜单GUI播放器。'
+help-description-openmenu: '&7[&6&l-&7] &7向玩家打开选定的菜单GUI。'
 
-use-command-setspawn-radius: '&7Invalid argument. &7Use &e/superlobby &asetspawnradius &3<name> <radius>.'
-error-command-setspawn-radius: "&8<radius> &7must be a numeric data."
+use-command-setspawn-radius: '&7参数错误。 &7请使用 &e/superlobby &asetspawnradius &3<name> <radius>.'
+error-command-setspawn-radius: "&8<radius> &7必须是数字。"
