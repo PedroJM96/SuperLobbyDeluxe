@@ -13,7 +13,7 @@ import org.bukkit.FireworkEffect.Type;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.entity.EntityType;
+import org.bukkit.World;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
@@ -1294,8 +1294,9 @@ public class PlayerListener implements Listener {
 
 	public void fireword(Player p) {
 		// Spawn the Firework
-		Firework fw = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
-		FireworkMeta fwm = fw.getFireworkMeta();
+		World world = p.getLocation().getWorld();
+        Firework fw = (Firework)world.spawn(p.getLocation(), Firework.class);		
+        FireworkMeta fwm = fw.getFireworkMeta();
 
 		// random
 		Random r = new Random();

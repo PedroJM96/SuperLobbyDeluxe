@@ -6,10 +6,10 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
-import org.bukkit.Sound;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.GameMode;
-import org.bukkit.entity.EntityType;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
@@ -134,7 +134,8 @@ public class CustomEvents {
 	
 	public void fireword(Player p){
 		//Spawn the Firework
-        Firework fw = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
+		World world = p.getLocation().getWorld();
+        Firework fw = (Firework)world.spawn(p.getLocation(), Firework.class);
         FireworkMeta fwm = fw.getFireworkMeta();
 
         //random

@@ -13,6 +13,7 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.pedrojm96.core.CoreColor;
+import com.pedrojm96.core.CoreUtils;
 import com.pedrojm96.core.CoreViaVersion;
 import com.pedrojm96.core.inventory.menu.CoreMenu;
 import com.pedrojm96.core.inventory.menu.CoreMenuItem;
@@ -156,7 +157,8 @@ public class OthersListener implements Listener{
 		 for(String menu : plugin.menus.keySet()){
 			 CoreMenu m = plugin.menus.get(menu);
 			 Player p = (Player) e.getWhoClicked();
-			 if (e.getView().getTitle().equals(CoreColor.colorCodes(m.getName()))){
+			 
+			 if (CoreUtils.getTitleInventory(e).equals(CoreColor.colorCodes(m.getName()))){
 				 ItemStack itemInHand = e.getCurrentItem();
 				 if(itemInHand == null){
 					 break;
