@@ -450,37 +450,60 @@ public class PlayerListener implements Listener {
 	 * @param e
 	 */
 	@EventHandler
-	public void onJumpPlate(PlayerMoveEvent e) {
-		if (plugin.config.getBoolean("jump-pads.enable")) {
+public void onJumpPlate(PlayerMoveEvent e) {
+	if (plugin.config.getBoolean("jump-pads.enable")) {
 
-			if (plugin.isWorldRadius(e.getPlayer().getLocation(), "jump-pads")) {
-				Material mat1 = Material.getMaterial(plugin.config.getString("jump-pads.plate-block").toUpperCase());
-				if (mat1 == null) {
-					mat1 = Material.getMaterial(plugin.config.getString("jump-pads.plate-block-old").toUpperCase());
-				}
+		if (plugin.isWorldRadius(e.getPlayer().getLocation(), "jump-pads")) {
+			Material mat1 = null;
+			String blockName = plugin.config.getString("jump-pads.plate-block");
+			String blockOldName = plugin.config.getString("jump-pads.plate-block-old");
 
-				if (e.getPlayer().getLocation().getBlock().getType() == mat1) {
+			if (blockName != null) {
+				mat1 = Material.getMaterial(blockName.toUpperCase());
+			}
+			if (mat1 == null && blockOldName != null) {
+				mat1 = Material.getMaterial(blockOldName.toUpperCase());
+			}
 
-					Vector vector = e.getPlayer().getLocation().getDirection().multiply(1.5D).setY(1.0D);
-					e.getPlayer().setVelocity(vector);
+			if (mat1 != null && e.getPlayer().getLocation().getBlock().getType() == mat1) {
 
-					e.getPlayer().setFallDistance(-9999.0F);
-					Sound sound;
+				Vector vector = e.getPlayer().getLocation().getDirection().multiply(1.5D).setY(1.0D);
+				e.getPlayer().setVelocity(vector);
+				e.getPlayer().setFallDistance(-9999.0F);
+
+				Sound sound = null;
+				String soundName = plugin.config.getString("jump-pads.sound");
+				String legacySoundName = plugin.config.getString("jump-pads.sound-old");
+
+				// Try new sound
+				if (soundName != null) {
 					try {
-						sound = Sound.valueOf(plugin.config.getString("jump-pads.sound").toUpperCase());
-					} catch (IllegalArgumentException ignore2) {
-						// try next
-						sound = null;
+						sound = Sound.valueOf(soundName.toUpperCase());
+					} catch (IllegalArgumentException ex) {
+						plugin.getLogger().warning("Invalid sound name in config: " + soundName);
 					}
-
-					if (sound == null) {
-						sound = Sound.valueOf(plugin.config.getString("jump-pads.sound-old").toUpperCase());
-					}
-					e.getPlayer().playSound(e.getPlayer().getLocation(), sound, 1.0F, 1.0F);
 				}
+
+				// Try legacy sound
+				if (sound == null && legacySoundName != null) {
+					try {
+						sound = Sound.valueOf(legacySoundName.toUpperCase());
+					} catch (IllegalArgumentException ex) {
+						plugin.getLogger().warning("Invalid legacy sound name in config: " + legacySoundName);
+					}
+				}
+
+				// Fallback to default sound
+				if (sound == null) {
+					plugin.getLogger().warning("No valid jump pad sound found. Using default: BLOCK_NOTE_BLOCK_PLING");
+					sound = Sound.BLOCK_NOTE_BLOCK_PLING;
+				}
+
+				e.getPlayer().playSound(e.getPlayer().getLocation(), sound, 1.0F, 1.0F);
 			}
 		}
 	}
+}
 
 	/**
 	 * To send messages when you enter using the BossBar,Tab,Titles,Motd,ActionBar.
