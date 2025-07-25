@@ -110,10 +110,19 @@ public class CustomEvents {
 		}else{
 			if(this.join_sound_global) {
 				for(Player player : Bukkit.getOnlinePlayers()) {
-					player.playSound(player.getLocation(), Sound.valueOf(join_sound.toUpperCase()), 1.0F, 1.0F);
+					try {
+						player.playSound(player.getLocation(), Sound.valueOf(join_sound.toUpperCase()), 1.0F, 1.0F);
+		            }catch (IncompatibleClassChangeError ignore2) {
+		                // try next
+		            }
 				}
 			}else {
-				p.getWorld().playSound(p.getLocation(), Sound.valueOf(join_sound.toUpperCase()), 1.0F, 1.0F);
+				try {
+					p.getWorld().playSound(p.getLocation(), Sound.valueOf(join_sound.toUpperCase()), 1.0F, 1.0F);
+	            }catch (IncompatibleClassChangeError ignore2) {
+	                // try next
+	            }
+				
 			}
 		}
 		 
